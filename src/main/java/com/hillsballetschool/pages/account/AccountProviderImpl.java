@@ -15,6 +15,7 @@ import org.apache.wicket.model.AbstractReadOnlyModel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.PropertyModel;
 
+import com.google.common.base.Preconditions;
 import com.hillsballetschool.dao.AccountDao;
 import com.hillsballetschool.domain.Account;
 
@@ -26,15 +27,15 @@ public class AccountProviderImpl extends SortableDataProvider<Account, String> i
 
 	@Inject
 	public AccountProviderImpl(AccountDao dao) {
-		this.dao = dao;
+		this.dao = Preconditions.checkNotNull(dao);
         setSort("givenName", SortOrder.ASCENDING);
 	}
 	
 	private class SortableDataProviderComparator implements Comparator<Account>, Serializable {
         @Override
-		public int compare(final Account o1, final Account o2) {
-            PropertyModel<String> model1 = new PropertyModel<String>(o1, getSort().getProperty());
-            PropertyModel<String> model2 = new PropertyModel<String>(o2, getSort().getProperty());
+		public int compare(final Account account1, final Account account2) {
+            PropertyModel<String> model1 = new PropertyModel<String>(account1, getSort().getProperty());
+            PropertyModel<String> model2 = new PropertyModel<String>(account2, getSort().getProperty());
  
             int result = model1.getObject().compareTo(model2.getObject());
  

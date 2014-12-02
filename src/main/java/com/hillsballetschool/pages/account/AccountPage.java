@@ -24,7 +24,7 @@ public class AccountPage extends MenuWebPage {
 	
 	public AccountPage() {
         List<PropertyColumn<Account, String>> columns = ImmutableList.of(
-        	new PropertyColumn<Account, String>(new StringResourceModel("firstNameTableHeaderLabel", this, null), "givenName", "givenName"),
+        	new PropertyColumn<Account, String>(new StringResourceModel("givenNameTableHeaderLabel", this, null), "givenName", "givenName"),
         	new PropertyColumn<Account, String>(new Model<String>("Surname"), "surname", "surname"),
         	new PropertyColumn<Account, String>(new Model<String>("Email"), "email", "email"),
         	new PropertyColumn<Account, String>(new Model<String>("Phone"), "phone", "phone"),
