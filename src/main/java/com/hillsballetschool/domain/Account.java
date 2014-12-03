@@ -4,11 +4,20 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 @Entity
 @Table(name="account")
+@NamedQueries({
+	@NamedQuery(name = Account.GET, query = "SELECT a FROM Account a order by a.surname, a.givenName"),
+	@NamedQuery(name = Account.COUNT, query="select count(a) from Account a")  
+})
 public class Account {
+
+	public static final String GET = "get";
+	public static final String COUNT = "count";
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -21,14 +30,6 @@ public class Account {
 	private String address1;
 	private String address2;
 	private String postcode;
-
-	public Account() {
-	}
-
-	public Account(String givenName, String surname) {
-		this.givenName = givenName;
-		this.surname = surname;
-	}
 
 	public long getId() {
 		return id;

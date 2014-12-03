@@ -24,8 +24,16 @@ public class AccountDaoImpl implements AccountDao {
 
 	@Override
 	@Transactional
-	public List<Account> getAccounts() {
-		TypedQuery<Account> query = emProvider.get().createQuery("SELECT e FROM Account e", Account.class);
+	public List<Account> get(long first, long count) {
+		TypedQuery<Account> query = emProvider.get().createNamedQuery(Account.GET, Account.class);
+		query.setFirstResult((int)first);
+		query.setMaxResults((int)count);
 	    return query.getResultList();
+	}
+
+	@Override
+	public long getCount() {
+		TypedQuery<Number> query = emProvider.get().createNamedQuery(Account.COUNT, Number.class);
+		return query.getSingleResult().longValue();  
 	}
 }

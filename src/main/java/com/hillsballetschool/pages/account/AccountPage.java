@@ -24,6 +24,7 @@ public class AccountPage extends MenuWebPage {
 	
 	public AccountPage() {
         List<PropertyColumn<Account, String>> columns = ImmutableList.of(
+           	new PropertyColumn<Account, String>(new Model<String>("Number"), "id", "id"),
         	new PropertyColumn<Account, String>(new StringResourceModel("givenNameTableHeaderLabel", this, null), "givenName", "givenName"),
         	new PropertyColumn<Account, String>(new Model<String>("Surname"), "surname", "surname"),
         	new PropertyColumn<Account, String>(new Model<String>("Email"), "email", "email"),
@@ -32,7 +33,7 @@ public class AccountPage extends MenuWebPage {
         	new PropertyColumn<Account, String>(new Model<String>("Address2"), "address2", "address2"),
         	new PropertyColumn<Account, String>(new Model<String>("Postcode"), "postcode", "postcode")
         );
-        add(new DefaultDataTable<Account, String>("datatable", columns, accountProvider, 10));
+        add(new DefaultDataTable<Account, String>("datatable", columns, accountProvider, Integer.MAX_VALUE));
     }
 	
 	@Override
