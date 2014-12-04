@@ -14,6 +14,7 @@ import com.hillsballetschool.domain.Account;
 import com.hillsballetschool.pages.account.edit.EditAccountPage;
 import com.hillsballetschool.pages.link.LinkColumn;
 import com.hillsballetschool.pages.menu.MenuWebPage;
+import com.hillsballetschool.pages.table.ResourcePropertyColumn;
 
 /**
  * The {@link AccountPage} is for creating or updating accounts

@@ -1,4 +1,4 @@
-package com.hillsballetschool.pages.account;
+package com.hillsballetschool.pages.table;
 
 import org.apache.wicket.Component;
 import org.apache.wicket.extensions.markup.html.repeater.data.table.PropertyColumn;

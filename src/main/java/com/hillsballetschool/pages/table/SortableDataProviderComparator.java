@@ -1,4 +1,4 @@
-package com.hillsballetschool.pages;
+package com.hillsballetschool.pages.table;
 
 import java.io.Serializable;
 import java.util.Comparator;

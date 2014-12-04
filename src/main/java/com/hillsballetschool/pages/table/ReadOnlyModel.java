@@ -1,4 +1,4 @@
-package com.hillsballetschool.pages;
+package com.hillsballetschool.pages.table;
 
 import org.apache.wicket.model.AbstractReadOnlyModel;
 

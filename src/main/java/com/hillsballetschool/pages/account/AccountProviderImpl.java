@@ -14,8 +14,8 @@ import org.apache.wicket.model.IModel;
 import com.google.common.base.Preconditions;
 import com.hillsballetschool.dao.AccountDao;
 import com.hillsballetschool.domain.Account;
-import com.hillsballetschool.pages.ReadOnlyModel;
-import com.hillsballetschool.pages.SortableDataProviderComparator;
+import com.hillsballetschool.pages.table.ReadOnlyModel;
+import com.hillsballetschool.pages.table.SortableDataProviderComparator;
 
 @SuppressWarnings("serial")
 @Singleton
