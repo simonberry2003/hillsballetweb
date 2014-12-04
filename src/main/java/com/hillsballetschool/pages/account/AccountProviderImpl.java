@@ -26,7 +26,7 @@ public class AccountProviderImpl extends SortableDataProvider<Account, String> i
 	@Inject
 	public AccountProviderImpl(AccountDao dao) {
 		this.dao = Preconditions.checkNotNull(dao);
-        setSort("surname", SortOrder.ASCENDING);
+        setSort(Account.Fields.SURNAME, SortOrder.ASCENDING);
 	}
 	
     @Override

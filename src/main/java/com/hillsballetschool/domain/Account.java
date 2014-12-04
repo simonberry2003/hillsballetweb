@@ -8,6 +8,8 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
+import com.google.common.base.Objects;
+
 @Entity
 @Table(name="account")
 @NamedQueries({
@@ -18,24 +20,49 @@ public class Account {
 
 	public static final String GET = "get";
 	public static final String COUNT = "count";
+	
+	public interface Fields {
+		public static final String ID = "id";
+		public static final String GIVEN_NAME = "givenName";
+		public static final String SURNAME = "surname";
+		public static final String EMAIL_ADDRESS = "emailAddress";
+		public static final String PHONE = "phone";
+		public static final String ADDRESS1 = "address1";
+		public static final String ADDRESS2 = "address2";
+		public static final String POSTCODE = "postcode";
+	}
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private long id;
+	private Long id;
 
 	private String givenName;
 	private String surname;
-	private String email;
+	private String emailAddress;
 	private String phone;
 	private String address1;
 	private String address2;
 	private String postcode;
 
-	public long getId() {
+	@Override
+	public String toString() {
+		return Objects.toStringHelper(this)
+			.add(Fields.ID, id)
+			.add(Fields.GIVEN_NAME, givenName)
+			.add(Fields.SURNAME, surname)
+			.add(Fields.EMAIL_ADDRESS, emailAddress)
+			.add(Fields.PHONE, phone)
+			.add(Fields.ADDRESS1, address1)
+			.add(Fields.ADDRESS2, address2)
+			.add(Fields.POSTCODE, postcode)
+			.toString();
+	}
+	
+	public Long getId() {
 		return id;
 	}
 	
-	public void setId(long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 	
@@ -55,12 +82,12 @@ public class Account {
 		this.surname = surname;
 	}
 	
-	public String getEmail() {
-		return email;
+	public String getEmailAddress() {
+		return emailAddress;
 	}
 	
-	public void setEmail(String email) {
-		this.email = email;
+	public void setEmailAddress(String emailAddress) {
+		this.emailAddress = emailAddress;
 	}
 	
 	public String getPhone() {

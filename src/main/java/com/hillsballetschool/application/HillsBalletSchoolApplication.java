@@ -8,13 +8,13 @@ import org.apache.wicket.protocol.http.WebApplication;
 
 import com.google.inject.persist.PersistService;
 import com.google.inject.persist.jpa.JpaPersistModule;
-import com.hillsballetschool.pages.home.HomePage;
+import com.hillsballetschool.pages.account.AccountPage;
 
 public class HillsBalletSchoolApplication extends WebApplication {
 	
 	@Override
 	public Class<? extends Page> getHomePage() {
-		return HomePage.class;
+		return AccountPage.class;
 	}
 
 	@Override

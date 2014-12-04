@@ -6,6 +6,7 @@ import javax.inject.Inject;
 
 import org.apache.wicket.extensions.markup.html.repeater.data.table.DefaultDataTable;
 import org.apache.wicket.extensions.markup.html.repeater.data.table.PropertyColumn;
+import org.apache.wicket.markup.html.link.BookmarkablePageLink;
 import org.apache.wicket.model.Model;
 import org.apache.wicket.model.StringResourceModel;
 
@@ -24,15 +25,16 @@ public class AccountPage extends MenuWebPage {
 	
 	public AccountPage() {
         List<PropertyColumn<Account, String>> columns = ImmutableList.of(
-           	new PropertyColumn<Account, String>(new Model<String>("Number"), "id", "id"),
-        	new PropertyColumn<Account, String>(new StringResourceModel("givenNameTableHeaderLabel", this, null), "givenName", "givenName"),
-        	new PropertyColumn<Account, String>(new Model<String>("Surname"), "surname", "surname"),
-        	new PropertyColumn<Account, String>(new Model<String>("Email"), "email", "email"),
-        	new PropertyColumn<Account, String>(new Model<String>("Phone"), "phone", "phone"),
-        	new PropertyColumn<Account, String>(new Model<String>("Address1"), "address1", "address1"),
-        	new PropertyColumn<Account, String>(new Model<String>("Address2"), "address2", "address2"),
-        	new PropertyColumn<Account, String>(new Model<String>("Postcode"), "postcode", "postcode")
+           	new PropertyColumn<Account, String>(new Model<String>("Number"), Account.Fields.ID, Account.Fields.ID),
+        	new PropertyColumn<Account, String>(new StringResourceModel("givenNameTableHeaderLabel", this, null), Account.Fields.GIVEN_NAME, Account.Fields.GIVEN_NAME),
+        	new PropertyColumn<Account, String>(new Model<String>("Surname"), Account.Fields.SURNAME, Account.Fields.SURNAME),
+        	new PropertyColumn<Account, String>(new Model<String>("Email Address"), Account.Fields.EMAIL_ADDRESS, Account.Fields.EMAIL_ADDRESS),
+        	new PropertyColumn<Account, String>(new Model<String>("Phone"), Account.Fields.PHONE, Account.Fields.PHONE),
+        	new PropertyColumn<Account, String>(new Model<String>("Address1"), Account.Fields.ADDRESS1, Account.Fields.ADDRESS1),
+        	new PropertyColumn<Account, String>(new Model<String>("Address2"), Account.Fields.ADDRESS2, Account.Fields.ADDRESS2),
+        	new PropertyColumn<Account, String>(new Model<String>("Postcode"), Account.Fields.POSTCODE, Account.Fields.POSTCODE)
         );
+		add(new BookmarkablePageLink<Void>("createAccountLink", EditAccountPage.class));
         add(new DefaultDataTable<Account, String>("datatable", columns, accountProvider, Integer.MAX_VALUE));
     }
 	
