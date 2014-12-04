@@ -32,8 +32,21 @@ public class AccountDaoImpl implements AccountDao {
 	}
 
 	@Override
+	@Transactional
 	public long getCount() {
 		TypedQuery<Number> query = emProvider.get().createNamedQuery(Account.COUNT, Number.class);
 		return query.getSingleResult().longValue();  
+	}
+
+	@Override
+	@Transactional
+	public Account get(long id) {
+		return emProvider.get().find(Account.class, id);
+	}
+
+	@Override
+	@Transactional
+	public Account save(Account account) {
+		return emProvider.get().merge(account);
 	}
 }

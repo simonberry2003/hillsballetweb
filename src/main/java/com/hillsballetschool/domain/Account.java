@@ -22,16 +22,26 @@ public class Account {
 	public static final String COUNT = "count";
 	
 	public interface Fields {
-		public static final String ID = "id";
-		public static final String GIVEN_NAME = "givenName";
-		public static final String SURNAME = "surname";
-		public static final String EMAIL_ADDRESS = "emailAddress";
-		public static final String PHONE = "phone";
-		public static final String ADDRESS1 = "address1";
-		public static final String ADDRESS2 = "address2";
-		public static final String POSTCODE = "postcode";
+		static final String ID = "id";
+		static final String GIVEN_NAME = "givenName";
+		static final String SURNAME = "surname";
+		static final String EMAIL_ADDRESS = "emailAddress";
+		static final String PHONE = "phone";
+		static final String ADDRESS1 = "address1";
+		static final String ADDRESS2 = "address2";
+		static final String POSTCODE = "postcode";
 	}
 
+	public interface Lengths {
+		static final int GIVEN_NAME = 50;
+		static final int SURNAME = 50;
+		static final int EMAIL_ADDRESS = 50;
+		static final int PHONE = 50;
+		static final int ADDRESS1 = 50;
+		static final int ADDRESS2 = 50;
+		static final int POSTCODE = 4;
+	}
+	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
