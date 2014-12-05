@@ -33,7 +33,7 @@ public class EditAccountPage extends MenuWebPage {
 		
 		Account account = null;
 		if (!params.isEmpty()) {
-			StringValue accountParam = params.get(Account.Fields.ID);
+			StringValue accountParam = params.get(Account.Fields.ID.getName());
 			long accountId = accountParam.toLong();
 			account = accountDao.get(accountId);
 		}

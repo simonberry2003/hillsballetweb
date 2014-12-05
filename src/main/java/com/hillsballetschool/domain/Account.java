@@ -8,40 +8,48 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
-import com.google.common.base.Objects;
+import com.google.common.base.Preconditions;
+import com.hillsballetschool.field.Field;
 
 @Entity
 @Table(name="account")
 @NamedQueries({
-	@NamedQuery(name = Account.GET, query = "SELECT a FROM Account a order by a.surname, a.givenName"),
-	@NamedQuery(name = Account.COUNT, query="select count(a) from Account a")  
+	@NamedQuery(name = Account.GET, query = "SELECT a FROM Account a order by a.surname, a.givenName")
 })
 public class Account {
 
 	public static final String GET = "get";
-	public static final String COUNT = "count";
 	
-	public interface Fields {
-		static final String ID = "id";
-		static final String GIVEN_NAME = "givenName";
-		static final String SURNAME = "surname";
-		static final String EMAIL_ADDRESS = "emailAddress";
-		static final String PHONE = "phone";
-		static final String ADDRESS1 = "address1";
-		static final String ADDRESS2 = "address2";
-		static final String POSTCODE = "postcode";
+	public enum Fields implements Field {
+
+		ID("id", 50),
+		GIVEN_NAME("givenName", 50),
+		SURNAME("surname", 50),
+		EMAIL_ADDRESS("emailAddress", 50),
+		PHONE("phone", 50),
+		ADDRESS1("address1", 50),
+		ADDRESS2("address2", 50),
+		POSTCODE("postcode", 4);
+
+		private final String name;
+		private final int length;
+		
+		Fields(String name, int length) {
+			this.name = Preconditions.checkNotNull(name);
+			this.length = length;
+		}
+		
+		@Override
+		public String getName() {
+			return this.name;
+		}
+
+		@Override
+		public int getLength() {
+			return length;
+		}
 	}
 
-	public interface Lengths {
-		static final int GIVEN_NAME = 50;
-		static final int SURNAME = 50;
-		static final int EMAIL_ADDRESS = 50;
-		static final int PHONE = 50;
-		static final int ADDRESS1 = 50;
-		static final int ADDRESS2 = 50;
-		static final int POSTCODE = 4;
-	}
-	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
@@ -56,16 +64,7 @@ public class Account {
 
 	@Override
 	public String toString() {
-		return Objects.toStringHelper(this)
-			.add(Fields.ID, id)
-			.add(Fields.GIVEN_NAME, givenName)
-			.add(Fields.SURNAME, surname)
-			.add(Fields.EMAIL_ADDRESS, emailAddress)
-			.add(Fields.PHONE, phone)
-			.add(Fields.ADDRESS1, address1)
-			.add(Fields.ADDRESS2, address2)
-			.add(Fields.POSTCODE, postcode)
-			.toString();
+		return EntityToStringHelper.toString(this, Fields.values());
 	}
 	
 	public Long getId() {

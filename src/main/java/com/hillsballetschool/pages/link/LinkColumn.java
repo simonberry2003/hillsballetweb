@@ -12,23 +12,24 @@ import org.apache.wicket.model.PropertyModel;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 
 import com.google.common.base.Preconditions;
+import com.hillsballetschool.field.Field;
 import com.hillsballetschool.pages.account.edit.EditAccountPage;
 
 @SuppressWarnings("serial")
 public class LinkColumn<T> extends AbstractColumn<T, String> {
 
-	private final String propertyExpression;
+	private final Field field;
 	private final String label;
 	
-	public LinkColumn(IModel<String> displayModel, String propertyExpression, String label) {
+	public LinkColumn(IModel<String> displayModel, Field field, String label) {
 		super(displayModel);
-		this.propertyExpression = Preconditions.checkNotNull(propertyExpression);
+		this.field= Preconditions.checkNotNull(field);
 		this.label = Preconditions.checkNotNull(label);
 	}
 
 	@Override
 	public void populateItem(Item<ICellPopulator<T>> item, String componentId, IModel<T> rowModel) {
-    	PropertyModel<Object> propertyModel = new PropertyModel<Object>(rowModel, propertyExpression);
+    	PropertyModel<Object> propertyModel = new PropertyModel<Object>(rowModel, field.getName());
 		item.add(new LinkPanel(item, componentId, propertyModel));
 	}
 	
@@ -45,7 +46,7 @@ public class LinkColumn<T> extends AbstractColumn<T, String> {
                 @Override
                 public void onClick() {
         			PageParameters params = new PageParameters();
-        			params.set(propertyExpression, propertyModel.getObject());
+        			params.set(field.getName(), propertyModel.getObject());
         			setResponsePage(EditAccountPage.class, params);
                 }
             };

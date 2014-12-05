@@ -7,19 +7,16 @@ import javax.inject.Singleton;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 
-import com.google.common.base.Preconditions;
 import com.google.inject.Provider;
 import com.google.inject.persist.Transactional;
 import com.hillsballetschool.domain.Account;
 
 @Singleton
-public class AccountDaoImpl implements AccountDao {
+public class AccountDaoImpl extends AbstractDao<Account> implements AccountDao {
 
-	private final Provider<EntityManager> emProvider;
-	
     @Inject
 	public AccountDaoImpl(Provider<EntityManager> emProvider) {
-		this.emProvider = Preconditions.checkNotNull(emProvider);
+    	super(emProvider);
 	}
 
 	@Override
@@ -32,21 +29,12 @@ public class AccountDaoImpl implements AccountDao {
 	}
 
 	@Override
-	@Transactional
-	public long getCount() {
-		TypedQuery<Number> query = emProvider.get().createNamedQuery(Account.COUNT, Number.class);
-		return query.getSingleResult().longValue();  
+	public String getSort() {
+		return Account.Fields.SURNAME.getName();
 	}
 
 	@Override
-	@Transactional
-	public Account get(long id) {
-		return emProvider.get().find(Account.class, id);
-	}
-
-	@Override
-	@Transactional
-	public Account save(Account account) {
-		return emProvider.get().merge(account);
+	protected Class<Account> getEntityType() {
+		return Account.class;
 	}
 }

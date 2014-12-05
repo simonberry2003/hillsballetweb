@@ -1,14 +1,13 @@
 package com.hillsballetschool.pages.account;
 
 import org.apache.wicket.markup.html.form.StatelessForm;
-import org.apache.wicket.markup.html.form.TextField;
 import org.apache.wicket.model.CompoundPropertyModel;
 import org.apache.wicket.validation.validator.EmailAddressValidator;
-import org.apache.wicket.validation.validator.StringValidator;
 
 import com.google.common.base.Preconditions;
 import com.hillsballetschool.dao.AccountDao;
 import com.hillsballetschool.domain.Account;
+import com.hillsballetschool.field.FieldText;
 
 @SuppressWarnings("serial")
 public class AccountForm extends StatelessForm<Account> {
@@ -34,28 +33,14 @@ public class AccountForm extends StatelessForm<Account> {
 	@Override
 	protected void onInitialize() {
 		super.onInitialize();
-		add(new TextField<String>(Account.Fields.GIVEN_NAME)
-				.setRequired(true)
-				.add(StringValidator.maximumLength(Account.Lengths.GIVEN_NAME)));
-		add(new TextField<String>(Account.Fields.SURNAME)
-				.setRequired(true)
-				.add(StringValidator.maximumLength(Account.Lengths.SURNAME)));
-		add(new TextField<String>(Account.Fields.EMAIL_ADDRESS)
-				.setRequired(true)
-				.add(EmailAddressValidator.getInstance())
-				.add(StringValidator.maximumLength(Account.Lengths.EMAIL_ADDRESS)));
-		add(new TextField<String>(Account.Fields.PHONE)
-				.setRequired(true)
-				.add(StringValidator.maximumLength(Account.Lengths.PHONE)));
-		add(new TextField<String>(Account.Fields.ADDRESS1)
-				.setRequired(true)
-				.add(StringValidator.maximumLength(Account.Lengths.ADDRESS1)));
-		add(new TextField<String>(Account.Fields.ADDRESS2)
-				.setRequired(true)
-				.add(StringValidator.maximumLength(Account.Lengths.ADDRESS2)));
-		add(new TextField<String>(Account.Fields.POSTCODE)
-				.setRequired(true)
-				.add(StringValidator.maximumLength(Account.Lengths.POSTCODE)));
+		add(new FieldText<String>(Account.Fields.GIVEN_NAME));
+		add(new FieldText<String>(Account.Fields.SURNAME));
+		add(new FieldText<String>(Account.Fields.EMAIL_ADDRESS)
+			.add(EmailAddressValidator.getInstance()));
+		add(new FieldText<String>(Account.Fields.PHONE));
+		add(new FieldText<String>(Account.Fields.ADDRESS1));
+		add(new FieldText<String>(Account.Fields.ADDRESS2));
+		add(new FieldText<String>(Account.Fields.POSTCODE));
 		setModel(new CompoundPropertyModel<Account>(account));
 	}
 	
