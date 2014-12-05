@@ -25,7 +25,7 @@ public class AccountPage extends MenuWebPage {
 	@Override
 	protected void onInitialize() {
 		super.onInitialize();
-		List<IColumn<Account, String>> columns = new ColumnBuilder<Account>(Account.Fields.ID, Account.Fields.values(), this).build();
+		List<IColumn<Account, String>> columns = new ColumnBuilder<Account>(Account.Fields.ID, Account.Fields.values(), this, EditAccountPage.class).build();
 		add(new BookmarkablePageLink<Void>("createAccountLink", EditAccountPage.class));
         add(new DefaultDataTable<Account, String>("datatable", columns, accountProvider, Integer.MAX_VALUE));
 	}

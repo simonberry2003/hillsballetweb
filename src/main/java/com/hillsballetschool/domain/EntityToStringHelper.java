@@ -3,11 +3,10 @@ package com.hillsballetschool.domain;
 import com.google.common.base.Objects;
 import com.google.common.base.Objects.ToStringHelper;
 import com.google.common.base.Throwables;
-import com.hillsballetschool.domain.Account.Fields;
 import com.hillsballetschool.field.Field;
 
 public class EntityToStringHelper {
-	public static String toString(Object o, Fields[] fields) {
+	public static String toString(Object o, Field[] fields) {
 		ToStringHelper helper = Objects.toStringHelper(o);
 		for (Field f : fields) {
 			try {

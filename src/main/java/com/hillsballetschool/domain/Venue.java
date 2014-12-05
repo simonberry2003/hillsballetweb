@@ -12,20 +12,18 @@ import com.google.common.base.Preconditions;
 import com.hillsballetschool.field.Field;
 
 @Entity
-@Table(name="account")
+@Table(name="venue")
 @NamedQueries({
-	@NamedQuery(name = Account.GET, query = "SELECT a FROM Account a order by a.surname, a.givenName")
+	@NamedQuery(name = Venue.GET, query = "SELECT v FROM Venue v order by v.name")
 })
-public class Account {
+public class Venue {
 
-	public static final String GET = "getAccount";
+	public static final String GET = "getVenue";
 	
 	public enum Fields implements Field {
 
 		ID("id", 50),
-		GIVEN_NAME("givenName", 50),
-		SURNAME("surname", 50),
-		EMAIL_ADDRESS("emailAddress", 50),
+		NAME("name", 50),
 		PHONE("phone", 50),
 		ADDRESS1("address1", 50),
 		ADDRESS2("address2", 50),
@@ -54,9 +52,7 @@ public class Account {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 
-	private String givenName;
-	private String surname;
-	private String emailAddress;
+	private String name;
 	private String phone;
 	private String address1;
 	private String address2;
@@ -75,28 +71,12 @@ public class Account {
 		this.id = id;
 	}
 	
-	public String getGivenName() {
-		return givenName;
+	public String getName() {
+		return name;
 	}
 	
-	public void setGivenName(String givenName) {
-		this.givenName = givenName;
-	}
-	
-	public String getSurname() {
-		return surname;
-	}
-	
-	public void setSurname(String surname) {
-		this.surname = surname;
-	}
-	
-	public String getEmailAddress() {
-		return emailAddress;
-	}
-	
-	public void setEmailAddress(String emailAddress) {
-		this.emailAddress = emailAddress;
+	public void setName(String name) {
+		this.name = name;
 	}
 	
 	public String getPhone() {
