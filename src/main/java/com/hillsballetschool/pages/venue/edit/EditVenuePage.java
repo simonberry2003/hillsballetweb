@@ -10,7 +10,6 @@ import com.google.common.base.Preconditions;
 import com.hillsballetschool.dao.VenueDao;
 import com.hillsballetschool.domain.Venue;
 import com.hillsballetschool.pages.menu.MenuWebPage;
-import com.hillsballetschool.pages.venue.VenueForm;
 
 /**
  * The {@link EditVenuePage} is for creating or updating venues

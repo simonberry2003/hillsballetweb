@@ -1,4 +1,4 @@
-package com.hillsballetschool.pages.account;
+package com.hillsballetschool.pages.account.edit;
 
 import org.apache.wicket.markup.html.form.StatelessForm;
 import org.apache.wicket.model.CompoundPropertyModel;
@@ -8,6 +8,7 @@ import com.google.common.base.Preconditions;
 import com.hillsballetschool.dao.AccountDao;
 import com.hillsballetschool.domain.Account;
 import com.hillsballetschool.field.FieldText;
+import com.hillsballetschool.pages.account.AccountPage;
 
 @SuppressWarnings("serial")
 public class AccountForm extends StatelessForm<Account> {
@@ -47,6 +48,6 @@ public class AccountForm extends StatelessForm<Account> {
 	@Override
 	public final void onSubmit() {
 		setModel(new CompoundPropertyModel<Account>(accountDao.save(getModel().getObject())));
-		success("Account has been saved");
+		setResponsePage(AccountPage.class);
 	}
 }
