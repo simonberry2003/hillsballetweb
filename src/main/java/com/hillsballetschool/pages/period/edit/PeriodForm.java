@@ -24,9 +24,16 @@ public class PeriodForm extends AbstractStatelessForm<Period> {
 
 	@Override
 	protected void addFields() {
+		
 		add(new FieldText<String>(Period.Fields.NAME));
-		add(new FieldText<Date>(Period.Fields.START));
-		add(new FieldText<Date>(Period.Fields.END));
+		
+		FieldText<Date> startDateField = new FieldText<Date>(Period.Fields.START);
+		add(startDateField);
+		
+		FieldText<Date> endDateField = new FieldText<Date>(Period.Fields.END);
+		add(endDateField);
+		
+		add(new StartEndDateValidator(startDateField, endDateField));
 	}
 
 	@Override
