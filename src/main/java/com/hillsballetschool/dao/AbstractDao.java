@@ -1,5 +1,7 @@
 package com.hillsballetschool.dao;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 
@@ -10,9 +12,11 @@ import com.google.inject.persist.Transactional;
 public abstract class AbstractDao<T> implements Dao<T> {
 	
 	protected final Provider<EntityManager> emProvider;
+	private final String getQueryName;
 	
-	protected AbstractDao(Provider<EntityManager> emProvider) {
+	protected AbstractDao(Provider<EntityManager> emProvider, String getQueryName) {
 		this.emProvider = Preconditions.checkNotNull(emProvider);
+		this.getQueryName = Preconditions.checkNotNull(getQueryName);
 	}
 
 	@Override
@@ -32,6 +36,15 @@ public abstract class AbstractDao<T> implements Dao<T> {
 	@Transactional
 	public T get(long id) {
 		return emProvider.get().find(getEntityType(), id);
+	}
+
+	@Override
+	@Transactional
+	public List<T> get(long first, long count) {
+		TypedQuery<T> query = emProvider.get().createNamedQuery(getQueryName, getEntityType());
+		query.setFirstResult((int)first);
+		query.setMaxResults((int)count);
+	    return query.getResultList();
 	}
 
 	protected abstract Class<T> getEntityType();
