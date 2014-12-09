@@ -2,42 +2,34 @@ package com.hillsballetschool.pages.level.edit;
 
 import javax.inject.Inject;
 
-import org.apache.wicket.markup.html.panel.FeedbackPanel;
+import org.apache.wicket.Component;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
-import org.apache.wicket.util.string.StringValue;
 
-import com.google.common.base.Preconditions;
+import com.hillsballetschool.dao.Dao;
 import com.hillsballetschool.dao.LevelDao;
 import com.hillsballetschool.domain.Level;
-import com.hillsballetschool.pages.menu.MenuWebPage;
+import com.hillsballetschool.pages.edit.AbstractEditPage;
 
 /**
  * The {@link EditLevelPage} is for creating or updating levels
  */
 @SuppressWarnings("serial")
-public class EditLevelPage extends MenuWebPage {
+public class EditLevelPage extends AbstractEditPage<Level> {
 
 	@Inject
 	private LevelDao levelDao;
 	
-	private final PageParameters params;
-
 	public EditLevelPage(PageParameters params) {
-		this.params = Preconditions.checkNotNull(params);
+		super(params);
 	}
-	
+
 	@Override
-	protected void onInitialize() {
-		super.onInitialize();
-		
-		Level level = null;
-		if (!params.isEmpty()) {
-			StringValue levelParam = params.get(Level.Fields.ID.getName());
-			long levelId = levelParam.toLong();
-			level = levelDao.get(levelId);
-		}
-		
-		add(new FeedbackPanel("feedbackPanel"));
-		add(new LevelForm("levelForm", level, levelDao));
+	protected Dao<Level> getDao() {
+		return levelDao;
+	}
+
+	@Override
+	protected Component createForm(Level level) {
+		return new LevelForm("levelForm", level, levelDao);
 	}
 }
