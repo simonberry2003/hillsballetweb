@@ -4,11 +4,15 @@ import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -16,33 +20,44 @@ import javax.persistence.TemporalType;
 import com.hillsballetschool.field.Field;
 
 @Entity
-@Table(name="period")
+@Table(name="classtime")
 @NamedQueries({
-	@NamedQuery(name = Period.GET, query = "SELECT p FROM Period p order by p.start")
+	@NamedQuery(name = ClassTime.GET, query = "SELECT c FROM ClassTime c order by c.start")
 })
 @SuppressWarnings("serial")
-public class Period implements Serializable {
+public class ClassTime implements Serializable {
 
-	public static final String GET = "getPeriod";
-	
+	public static final String GET = "getClassTime";
+
 	public interface Fields {
 		static Field ID = new Field("id", 50); 
-		static Field NAME = new Field("name", 50);
+		static Field DAY = new Field("day", 50);
+		static Field VENUE = new Field("venue");
+		static Field LEVEL = new Field("level");
 		static Field START = new Field("start");
 		static Field END = new Field("end");
-		static Field[] VALUES = new Field[] {ID, NAME, START, END};
+		static Field[] VALUES = new Field[] {ID, DAY, VENUE, LEVEL, START, END};
 	}
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 
-	private String name;
+	@Enumerated(EnumType.STRING)
+	private Day day;
 	
-	@Temporal(TemporalType.DATE)
+	@OneToOne
+	@JoinColumn(name="venueId")
+	private Venue venue;
+
+	@OneToOne
+	@JoinColumn(name="levelId")
+	private Level level;
+
+	@Temporal(TemporalType.TIME)
 	private Date start;
 	
-	@Temporal(TemporalType.DATE)
+	@Temporal(TemporalType.TIME)
 	private Date end;
 
 	@Override
@@ -58,12 +73,12 @@ public class Period implements Serializable {
 		this.id = id;
 	}
 	
-	public String getName() {
-		return name;
+	public Day getDay() {
+		return day;
 	}
-	
-	public void setName(String name) {
-		this.name = name;
+
+	public void setDay(Day day) {
+		this.day = day;
 	}
 
 	public Date getStart() {

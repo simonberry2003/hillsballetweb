@@ -25,7 +25,7 @@ public class LevelPage extends MenuWebPage {
 	@Override
 	protected void onInitialize() {
 		super.onInitialize();
-		List<IColumn<Level, String>> columns = new ColumnBuilder<Level>(Level.Fields.ID, Level.Fields.values(), this, EditLevelPage.class).build();
+		List<IColumn<Level, String>> columns = new ColumnBuilder<Level>(Level.Fields.ID, Level.Fields.VALUES, this, EditLevelPage.class).build();
 		add(new BookmarkablePageLink<Void>("createLevelLink", EditLevelPage.class));
         add(new DefaultDataTable<Level, String>("datatable", columns, levelProvider, Integer.MAX_VALUE));
 	}

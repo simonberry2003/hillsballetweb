@@ -25,7 +25,7 @@ public class VenuePage extends MenuWebPage {
 	@Override
 	protected void onInitialize() {
 		super.onInitialize();
-		List<IColumn<Venue, String>> columns = new ColumnBuilder<Venue>(Venue.Fields.ID, Venue.Fields.values(), this, EditVenuePage.class).build();
+		List<IColumn<Venue, String>> columns = new ColumnBuilder<Venue>(Venue.Fields.ID, Venue.Fields.VALUES, this, EditVenuePage.class).build();
 		add(new BookmarkablePageLink<Void>("createVenueLink", EditVenuePage.class));
         add(new DefaultDataTable<Venue, String>("datatable", columns, venueProvider, Integer.MAX_VALUE));
 	}

@@ -10,7 +10,6 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
-import com.google.common.base.Preconditions;
 import com.hillsballetschool.field.Field;
 
 @Entity
@@ -23,38 +22,16 @@ public class Account implements Serializable {
 
 	public static final String GET = "getAccount";
 	
-	public enum Fields implements Field {
-
-		ID("id"),
-		GIVEN_NAME("givenName", 50),
-		SURNAME("surname", 50),
-		EMAIL_ADDRESS("emailAddress", 50),
-		PHONE("phone", 50),
-		ADDRESS1("address1", 50),
-		ADDRESS2("address2", 50),
-		POSTCODE("postcode", 4);
-
-		private final String name;
-		private final Integer length;
-		
-		Fields(String name, Integer length) {
-			this.name = Preconditions.checkNotNull(name);
-			this.length = length;
-		}
-
-		Fields(String name) {
-			this(name, null);
-		}
-
-		@Override
-		public String getName() {
-			return this.name;
-		}
-
-		@Override
-		public Integer getLength() {
-			return length;
-		}
+	public interface Fields {
+		static Field ID = new Field("id", 50); 
+		static Field GIVEN_NAME = new Field("givenName", 50);
+		static Field SURNAME = new Field("surname", 50);
+		static Field EMAIL_ADDRESS = new Field("emailAddress", 50);
+		static Field PHONE = new Field("phone", 50);
+		static Field ADDRESS1 = new Field("address1", 50);
+		static Field ADDRESS2 = new Field("address2", 50);
+		static Field POSTCODE = new Field("postcode", 4);
+		static Field[] VALUES = new Field[] {ID, GIVEN_NAME, SURNAME, EMAIL_ADDRESS, PHONE, ADDRESS1, ADDRESS2, POSTCODE};
 	}
 
 	@Id
@@ -71,7 +48,7 @@ public class Account implements Serializable {
 
 	@Override
 	public String toString() {
-		return EntityToStringHelper.toString(this, Fields.values());
+		return EntityToStringHelper.toString(this, Fields.VALUES);
 	}
 	
 	public Long getId() {

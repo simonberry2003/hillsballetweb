@@ -25,7 +25,7 @@ public class PeriodPage extends MenuWebPage {
 	@Override
 	protected void onInitialize() {
 		super.onInitialize();
-		List<IColumn<Period, String>> columns = new ColumnBuilder<Period>(Period.Fields.ID, Period.Fields.values(), this, EditPeriodPage.class).build();
+		List<IColumn<Period, String>> columns = new ColumnBuilder<Period>(Period.Fields.ID, Period.Fields.VALUES, this, EditPeriodPage.class).build();
 		add(new BookmarkablePageLink<Void>("createPeriodLink", EditPeriodPage.class));
         add(new DefaultDataTable<Period, String>("datatable", columns, periodProvider, Integer.MAX_VALUE));
 	}

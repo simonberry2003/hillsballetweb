@@ -10,7 +10,6 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
-import com.google.common.base.Preconditions;
 import com.hillsballetschool.field.Field;
 
 @Entity
@@ -22,33 +21,11 @@ import com.hillsballetschool.field.Field;
 public class Level implements Serializable {
 
 	public static final String GET = "getLevel";
-	
-	public enum Fields implements Field {
 
-		ID("id"),
-		NAME("name", 50);
-
-		private final String name;
-		private final Integer length;
-		
-		Fields(String name, Integer length) {
-			this.name = Preconditions.checkNotNull(name);
-			this.length = length;
-		}
-		
-		Fields(String name) {
-			this(name, null);
-		}
-		
-		@Override
-		public String getName() {
-			return this.name;
-		}
-
-		@Override
-		public Integer getLength() {
-			return length;
-		}
+	public interface Fields {
+		static Field ID = new Field("id", 50); 
+		static Field NAME = new Field("name", 50);
+		static Field[] VALUES = new Field[] {Fields.ID, Fields.NAME};
 	}
 
 	@Id
@@ -59,7 +36,7 @@ public class Level implements Serializable {
 
 	@Override
 	public String toString() {
-		return EntityToStringHelper.toString(this, Fields.values());
+		return EntityToStringHelper.toString(this, Fields.VALUES);
 	}
 	
 	public Long getId() {
