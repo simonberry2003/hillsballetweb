@@ -5,6 +5,7 @@
     <!--  Schema -->
     <include file="liquibase/schema/account/account.xml"/>
     <include file="liquibase/schema/level/level.xml"/>
+    <include file="liquibase/schema/period/period.xml"/>
     <include file="liquibase/schema/venue/venue.xml"/>
 
 </databaseChangeLog>

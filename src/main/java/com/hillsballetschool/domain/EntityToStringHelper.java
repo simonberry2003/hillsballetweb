@@ -10,7 +10,7 @@ public class EntityToStringHelper {
 		ToStringHelper helper = Objects.toStringHelper(o);
 		for (Field f : fields) {
 			try {
-				java.lang.reflect.Field field = Account.class.getDeclaredField(f.getName());
+				java.lang.reflect.Field field = o.getClass().getDeclaredField(f.getName());
 				field.setAccessible(true);
 				helper.add(f.getName(), field.get(o));
 			} catch (Exception e) {

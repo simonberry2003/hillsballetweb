@@ -7,7 +7,9 @@ import org.apache.wicket.validation.validator.StringValidator;
 public class FieldText<T> extends TextField<T> {
 	public FieldText(Field field) {
 		super(field.getName());
-		add(StringValidator.maximumLength(field.getLength()));
+		if (field.getLength() != null) {
+			add(StringValidator.maximumLength(field.getLength()));
+		}
 		setRequired(true);
 	}
 }

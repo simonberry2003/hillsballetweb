@@ -1,5 +1,7 @@
 package com.hillsballetschool.domain;
 
+import java.io.Serializable;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -16,13 +18,14 @@ import com.hillsballetschool.field.Field;
 @NamedQueries({
 	@NamedQuery(name = Venue.GET, query = "SELECT v FROM Venue v order by v.name")
 })
-public class Venue {
+@SuppressWarnings("serial")
+public class Venue implements Serializable {
 
 	public static final String GET = "getVenue";
 	
 	public enum Fields implements Field {
 
-		ID("id", 50),
+		ID("id"),
 		NAME("name", 50),
 		PHONE("phone", 50),
 		ADDRESS1("address1", 50),
@@ -30,11 +33,15 @@ public class Venue {
 		POSTCODE("postcode", 4);
 
 		private final String name;
-		private final int length;
+		private final Integer length;
 		
-		Fields(String name, int length) {
+		Fields(String name, Integer length) {
 			this.name = Preconditions.checkNotNull(name);
 			this.length = length;
+		}
+		
+		Fields(String name) {
+			this(name, null);
 		}
 		
 		@Override
@@ -43,7 +50,7 @@ public class Venue {
 		}
 
 		@Override
-		public int getLength() {
+		public Integer getLength() {
 			return length;
 		}
 	}
