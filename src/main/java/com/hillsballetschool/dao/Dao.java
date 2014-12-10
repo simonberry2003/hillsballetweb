@@ -3,6 +3,7 @@ package com.hillsballetschool.dao;
 import java.util.List;
 
 public interface Dao<T> {
+	List<T> getAll();
 	List<T> get(long first, long count);
 	long getCount();
 	T get(long id);

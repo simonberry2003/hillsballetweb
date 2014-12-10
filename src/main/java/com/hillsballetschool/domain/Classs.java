@@ -1,7 +1,7 @@
 package com.hillsballetschool.domain;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.sql.Time;
 
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -14,8 +14,6 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 import com.hillsballetschool.field.Field;
 
@@ -33,6 +31,7 @@ public class Classs implements Serializable {
 		static Field ID = new Field("id", 50); 
 		static Field DAY = new Field("day", 50);
 		static Field VENUE = new Field("venueName");
+		static Field VENUE2 = new Field("venue");
 		static Field LEVEL = new Field("levelName");
 		static Field START = new Field("start");
 		static Field END = new Field("end");
@@ -54,11 +53,11 @@ public class Classs implements Serializable {
 	@JoinColumn(name="levelId")
 	private Level level;
 
-	@Temporal(TemporalType.TIME)
-	private Date start;
+	//@Temporal(TemporalType.TIME)
+	private Time start;
 	
-	@Temporal(TemporalType.TIME)
-	private Date end;
+	//@Temporal(TemporalType.TIME)
+	private Time end;
 
 	@Override
 	public String toString() {
@@ -81,19 +80,19 @@ public class Classs implements Serializable {
 		this.day = day;
 	}
 
-	public Date getStart() {
+	public Time getStart() {
 		return start;
 	}
 
-	public void setStart(Date start) {
+	public void setStart(Time start) {
 		this.start = start;
 	}
 
-	public Date getEnd() {
+	public Time getEnd() {
 		return end;
 	}
 
-	public void setEnd(Date end) {
+	public void setEnd(Time end) {
 		this.end = end;
 	}
 	

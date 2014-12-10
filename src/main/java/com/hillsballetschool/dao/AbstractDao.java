@@ -40,6 +40,12 @@ public abstract class AbstractDao<T> implements Dao<T> {
 
 	@Override
 	@Transactional
+	public List<T> getAll() {
+	    return get(0, Integer.MAX_VALUE);
+	}
+
+	@Override
+	@Transactional
 	public List<T> get(long first, long count) {
 		TypedQuery<T> query = emProvider.get().createNamedQuery(getQueryName, getEntityType());
 		query.setFirstResult((int)first);
