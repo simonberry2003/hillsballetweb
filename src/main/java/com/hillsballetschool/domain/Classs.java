@@ -32,8 +32,8 @@ public class Classs implements Serializable {
 	public interface Fields {
 		static Field ID = new Field("id", 50); 
 		static Field DAY = new Field("day", 50);
-		static Field VENUE = new Field("venue");
-		static Field LEVEL = new Field("level");
+		static Field VENUE = new Field("venueName");
+		static Field LEVEL = new Field("levelName");
 		static Field START = new Field("start");
 		static Field END = new Field("end");
 		static Field[] VALUES = new Field[] {ID, DAY, VENUE, LEVEL, START, END};
@@ -95,5 +95,13 @@ public class Classs implements Serializable {
 
 	public void setEnd(Date end) {
 		this.end = end;
+	}
+	
+	public String getVenueName() {
+		return venue.getName();
+	}
+
+	public String getLevelName() {
+		return level.getName();
 	}
 }

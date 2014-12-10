@@ -27,14 +27,14 @@ public abstract class AbstractStatelessForm<T> extends StatelessForm<T> {
 	@Override
 	protected void onInitialize() {
 		super.onInitialize();
-		addFields();
 		setModel(new CompoundPropertyModel<T>(model));
+		addFields();
 	}
 	
 	protected abstract void addFields();
 	
 	@Override
-	public final void onSubmit() {
+	public void onSubmit() {
 		setModel(new CompoundPropertyModel<T>(dao.save(getModel().getObject())));
 		setResponsePage(getResponsePage());
 	}
