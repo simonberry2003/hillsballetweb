@@ -44,7 +44,7 @@ public class Venue implements Serializable {
 
 	@Override
 	public String toString() {
-		return EntityToStringHelper.toString(this, Fields.VALUES);
+		return name;
 	}
 	
 	public Long getId() {

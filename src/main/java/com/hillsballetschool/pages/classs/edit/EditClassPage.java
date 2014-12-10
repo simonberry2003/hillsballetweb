@@ -7,6 +7,7 @@ import org.apache.wicket.request.mapper.parameter.PageParameters;
 
 import com.hillsballetschool.dao.ClassDao;
 import com.hillsballetschool.dao.Dao;
+import com.hillsballetschool.dao.LevelDao;
 import com.hillsballetschool.dao.VenueDao;
 import com.hillsballetschool.domain.Classs;
 import com.hillsballetschool.pages.edit.AbstractEditPage;
@@ -17,11 +18,9 @@ import com.hillsballetschool.pages.edit.AbstractEditPage;
 @SuppressWarnings("serial")
 public class EditClassPage extends AbstractEditPage<Classs> {
 
-	@Inject
-	private ClassDao dao;
-	
-	@Inject
-	private VenueDao venueDao;
+	@Inject private ClassDao dao;
+	@Inject private VenueDao venueDao;
+	@Inject private LevelDao levelDao;
 
 	public EditClassPage(PageParameters params) {
 		super(params);
@@ -34,6 +33,6 @@ public class EditClassPage extends AbstractEditPage<Classs> {
 
 	@Override
 	protected Component createForm(Classs classs) {
-		return new ClassForm("classForm", classs, dao, venueDao);
+		return new ClassForm("classForm", classs, dao, venueDao, levelDao);
 	}
 }
