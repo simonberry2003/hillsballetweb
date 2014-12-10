@@ -4,7 +4,7 @@ import org.apache.wicket.markup.html.link.BookmarkablePageLink;
 import org.apache.wicket.markup.html.panel.Panel;
 
 import com.hillsballetschool.pages.account.AccountPage;
-import com.hillsballetschool.pages.classtime.ClassTimePage;
+import com.hillsballetschool.pages.classs.ClassPage;
 import com.hillsballetschool.pages.level.LevelPage;
 import com.hillsballetschool.pages.menu.MenuWebPage;
 import com.hillsballetschool.pages.period.PeriodPage;
@@ -22,6 +22,6 @@ public class Menu extends Panel {
 		add(new BookmarkablePageLink<Void>("levelLink", LevelPage.class));
 		add(new BookmarkablePageLink<Void>("periodLink", PeriodPage.class));
 		add(new BookmarkablePageLink<Void>("venueLink", VenuePage.class));
-		add(new BookmarkablePageLink<Void>("classTimeLink", ClassTimePage.class));
+		add(new BookmarkablePageLink<Void>("classLink", ClassPage.class));
 	}
 }

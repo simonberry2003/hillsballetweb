@@ -4,7 +4,7 @@
 	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
 
 	<changeSet id="1" author="simon">
-		<createTable tableName="classtime">
+		<createTable tableName="class">
 			<column name="id" type="bigint" autoIncrement="true">
 				<constraints primaryKey="true" nullable="false" />
 			</column>
@@ -27,21 +27,21 @@
 
 		<addForeignKeyConstraint 
 		  baseColumnNames="venueId" 
-		  baseTableName="classtime" 
-		  constraintName="fk_classtime_venue" 
+		  baseTableName="class" 
+		  constraintName="fk_class_venue" 
 	      referencedColumnNames="id" 
 	      referencedTableName="venue" />
 
         <addForeignKeyConstraint 
           baseColumnNames="levelId" 
-          baseTableName="classtime" 
-          constraintName="fk_classtime_level" 
+          baseTableName="class" 
+          constraintName="fk_class_level" 
           referencedColumnNames="id" 
           referencedTableName="level" />
           
         <addUniqueConstraint 
           columnNames="day, venueId, start"
-          constraintName="unique_classtime"
-          tableName="classtime" />
+          constraintName="unique_class"
+          tableName="class" />
 	</changeSet>
 </databaseChangeLog>

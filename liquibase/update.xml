@@ -7,6 +7,6 @@
     <include file="liquibase/schema/level/level.xml"/>
     <include file="liquibase/schema/period/period.xml"/>
     <include file="liquibase/schema/venue/venue.xml"/>
-    <include file="liquibase/schema/classtime/classtime.xml"/>
+    <include file="liquibase/schema/class/class.xml"/>
 
 </databaseChangeLog>

@@ -20,14 +20,14 @@ import javax.persistence.TemporalType;
 import com.hillsballetschool.field.Field;
 
 @Entity
-@Table(name="classtime")
+@Table(name="class")
 @NamedQueries({
-	@NamedQuery(name = ClassTime.GET, query = "SELECT c FROM ClassTime c order by c.start")
+	@NamedQuery(name = Classs.GET, query = "SELECT c FROM Classs c order by c.start")
 })
 @SuppressWarnings("serial")
-public class ClassTime implements Serializable {
+public class Classs implements Serializable {
 
-	public static final String GET = "getClassTime";
+	public static final String GET = "getClasss";
 
 	public interface Fields {
 		static Field ID = new Field("id", 50); 
