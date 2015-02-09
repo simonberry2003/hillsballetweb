@@ -39,9 +39,9 @@ public class ClassForm extends AbstractStatelessForm<Classs> {
 	@Override
 	protected void addFields() {
 		Classs classs = getModel().getObject();
-		add(new DropDownChoice<Day>("day", new PropertyModel<Day>(classs, Classs.Fields.DAY.getName()), ImmutableList.<Day>copyOf(Day.values())));
-		add(new DropDownChoice<Venue>("venue", new PropertyModel<Venue>(classs, Classs.Fields.VENUE.getName()), venueDao.getAll()));
-		add(new DropDownChoice<Level>("level", new PropertyModel<Level>(classs, Classs.Fields.LEVEL.getName()), levelDao.getAll()));
+		add(new DropDownChoice<Day>("day", new PropertyModel<Day>(classs, Classs.Fields.DAY.getName()), ImmutableList.<Day>copyOf(Day.values())).setRequired(true));
+		add(new DropDownChoice<Venue>("venue", new PropertyModel<Venue>(classs, Classs.Fields.VENUE.getName()), venueDao.getAll()).setRequired(true));
+		add(new DropDownChoice<Level>("level", new PropertyModel<Level>(classs, Classs.Fields.LEVEL.getName()), levelDao.getAll()).setRequired(true));
 		add(new FieldText<Time>(Classs.Fields.START));
 		add(new FieldText<Time>(Classs.Fields.END));
 	}

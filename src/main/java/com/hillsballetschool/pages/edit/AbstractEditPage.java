@@ -23,14 +23,18 @@ public abstract class AbstractEditPage<T> extends MenuWebPage {
 		super.onInitialize();
 		
 		T model = null;
-		if (!params.isEmpty()) {
-			StringValue modelParam = params.get("id");
+		StringValue modelParam = getModelId();
+		if (!modelParam.isNull()) {
 			long id = modelParam.toLong();
 			model = getDao().get(id);
 		}
 		
 		add(new FeedbackPanel("feedbackPanel"));
 		add(createForm(model));
+	}
+
+	protected StringValue getModelId() {
+		return params.get("id");
 	}
 
 	protected abstract Dao<T> getDao();

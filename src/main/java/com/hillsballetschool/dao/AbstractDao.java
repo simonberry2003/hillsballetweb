@@ -22,8 +22,14 @@ public abstract class AbstractDao<T> implements Dao<T> {
 	@Override
 	@Transactional
 	public long getCount() {
-		TypedQuery<Number> query = emProvider.get().createQuery("select count(e) from " + getEntityType().getSimpleName() + " e", Number.class);
+		String sql = "select count(e) from " + getEntityType().getSimpleName() + " e " + getWhere();
+		TypedQuery<Number> query = emProvider.get().createQuery(sql, Number.class);
+		addParams(query);
 		return query.getSingleResult().longValue();  
+	}
+
+	protected String getWhere() {
+		return "";
 	}
 
 	@Override
@@ -48,9 +54,13 @@ public abstract class AbstractDao<T> implements Dao<T> {
 	@Transactional
 	public List<T> get(long first, long count) {
 		TypedQuery<T> query = emProvider.get().createNamedQuery(getQueryName, getEntityType());
+		addParams(query);
 		query.setFirstResult((int)first);
 		query.setMaxResults((int)count);
 	    return query.getResultList();
+	}
+
+	protected void addParams(TypedQuery<?> query) {
 	}
 
 	protected abstract Class<T> getEntityType();

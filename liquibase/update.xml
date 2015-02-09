@@ -8,5 +8,6 @@
     <include file="liquibase/schema/period/period.xml"/>
     <include file="liquibase/schema/venue/venue.xml"/>
     <include file="liquibase/schema/class/class.xml"/>
+    <include file="liquibase/schema/client/client.xml"/>
 
 </databaseChangeLog>
