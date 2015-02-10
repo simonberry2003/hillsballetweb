@@ -8,7 +8,7 @@ import org.apache.wicket.request.mapper.parameter.PageParameters;
  * Base {@link WebPage} class for all web pages. Has the addition of some useful methods.
  */
 @SuppressWarnings("serial")
-public abstract class HillsBalletSchoolWebPage extends WebPage {
+public abstract class HillsBalletSchoolWebPage extends WebPage implements ParameterProvider {
 
 	public HillsBalletSchoolWebPage(PageParameters parameters) {
 		super(parameters);
@@ -22,7 +22,8 @@ public abstract class HillsBalletSchoolWebPage extends WebPage {
 		return getUrl(pageClass, null);
 	}
 	
-	protected String getParameter(String parameterName) {
+	@Override
+	public String getParameter(String parameterName) {
 		return getPageParameters().get(parameterName).toString();
 	}
 }

@@ -21,7 +21,8 @@ import com.hillsballetschool.field.Field;
 public class Account implements Serializable {
 
 	public static final String GET = "getAccount";
-	
+	public static final String ACCOUNT_ID = "accountId";
+
 	public interface Fields {
 		static Field ID = new Field("id", 50); 
 		static Field GIVEN_NAME = new Field("givenName", 50);

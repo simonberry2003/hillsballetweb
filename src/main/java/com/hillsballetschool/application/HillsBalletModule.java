@@ -25,6 +25,8 @@ import com.hillsballetschool.pages.period.PeriodProvider;
 import com.hillsballetschool.pages.period.PeriodProviderImpl;
 import com.hillsballetschool.pages.venue.VenueProvider;
 import com.hillsballetschool.pages.venue.VenueProviderImpl;
+import com.hillsballetschool.session.SessionParams;
+import com.hillsballetschool.session.SessionParamsImpl;
 
 public class HillsBalletModule extends AbstractModule {
 
@@ -42,5 +44,6 @@ public class HillsBalletModule extends AbstractModule {
 		bind(VenueDao.class).to(VenueDaoImpl.class);
 		bind(ClientProvider.class).to(ClientProviderImpl.class);
 		bind(ClientDao.class).to(ClientDaoImpl.class);
+		bind(SessionParams.class).to(SessionParamsImpl.class);
 	}
 }

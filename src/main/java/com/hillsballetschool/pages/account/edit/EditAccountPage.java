@@ -8,7 +8,6 @@ import org.apache.wicket.Component;
 import org.apache.wicket.extensions.markup.html.repeater.data.table.DefaultDataTable;
 import org.apache.wicket.extensions.markup.html.repeater.data.table.IColumn;
 import org.apache.wicket.markup.html.link.BookmarkablePageLink;
-import org.apache.wicket.protocol.http.WebSession;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 import org.apache.wicket.util.string.StringValue;
 
@@ -20,6 +19,7 @@ import com.hillsballetschool.pages.client.ClientProvider;
 import com.hillsballetschool.pages.client.edit.EditClientPage;
 import com.hillsballetschool.pages.edit.AbstractEditPage;
 import com.hillsballetschool.provider.ColumnBuilder;
+import com.hillsballetschool.session.SessionParams;
 
 /**
  * The {@link EditAccountPage} is for creating or updating accounts
@@ -27,12 +27,10 @@ import com.hillsballetschool.provider.ColumnBuilder;
 @SuppressWarnings("serial")
 public class EditAccountPage extends AbstractEditPage<Account> {
 
-	@Inject
-	private AccountDao accountDao;
-
-	@Inject
-	private ClientProvider clientProvider;
-
+	@Inject private AccountDao accountDao;
+	@Inject private ClientProvider clientProvider;
+	@Inject private SessionParams sessionParams;
+	
 	public EditAccountPage(PageParameters params) {
 		super(params);
 	}
@@ -51,22 +49,21 @@ public class EditAccountPage extends AbstractEditPage<Account> {
 	protected void onInitialize() {
 		super.onInitialize();
 		List<IColumn<Client, String>> columns = new ColumnBuilder<Client>(Client.Fields.ID, Client.Fields.VALUES, this, EditClientPage.class).build();
-		
-		String accountIdParam = getParameter("id");
-		Long accountId = accountIdParam != null ? Long.valueOf(accountIdParam) : (Long) WebSession.get().getAttribute("account_id");
 
+		long accountId = getAccountId();
 		BookmarkablePageLink<Void> createClientLink = new BookmarkablePageLink<Void>("createClientLink", EditClientPage.class);
 		createClientLink.getPageParameters().add("accountId", accountId);
 		add(createClientLink);
         
-		WebSession.get().setAttribute("account_id", accountId);
-		
 		add(new DefaultDataTable<Client, String>("datatable", columns, clientProvider, Integer.MAX_VALUE));
 	}
 	
+	private long getAccountId() {
+		return sessionParams.get(Long.class, this, Account.Fields.ID.getName(), Account.ACCOUNT_ID);
+	}
+
 	@Override
 	protected StringValue getModelId() {
-		StringValue modelId = super.getModelId();
-		return !modelId.isNull() ? modelId : StringValue.valueOf(WebSession.get().getAttribute("account_id"));
+		return StringValue.valueOf(getAccountId());
 	}
 }
