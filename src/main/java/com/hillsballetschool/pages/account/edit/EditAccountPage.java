@@ -48,17 +48,19 @@ public class EditAccountPage extends AbstractEditPage<Account> {
 	@Override
 	protected void onInitialize() {
 		super.onInitialize();
-		List<IColumn<Client, String>> columns = new ColumnBuilder<Client>(Client.Fields.ID, Client.Fields.VALUES, this, EditClientPage.class).build();
-
-		long accountId = getAccountId();
+		
 		BookmarkablePageLink<Void> createClientLink = new BookmarkablePageLink<Void>("createClientLink", EditClientPage.class);
-		createClientLink.getPageParameters().add("accountId", accountId);
-		add(createClientLink);
-        
-		add(new DefaultDataTable<Client, String>("datatable", columns, clientProvider, Integer.MAX_VALUE));
+		Long accountId = getAccountId();
+		if (accountId != null) {
+			createClientLink.getPageParameters().add("accountId", accountId);
+		}
+		add(createClientLink.setVisible(accountId != null));
+		
+		List<IColumn<Client, String>> columns = new ColumnBuilder<Client>(Client.Fields.ID, Client.Fields.VALUES, this, EditClientPage.class).build();
+		add(new DefaultDataTable<Client, String>("datatable", columns, clientProvider, Integer.MAX_VALUE).setVisible(accountId != null));
 	}
 	
-	private long getAccountId() {
+	private Long getAccountId() {
 		return sessionParams.get(Long.class, this, Account.Fields.ID.getName(), Account.ACCOUNT_ID);
 	}
 
