@@ -39,7 +39,7 @@ public class AccountForm extends AbstractStatelessForm<Account> {
 	}
 
 	@Override
-	protected String getName() {
+	protected String getEntityName() {
 		return "Account";
 	}
 }

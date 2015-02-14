@@ -33,7 +33,7 @@ public class ClientForm extends AbstractStatelessForm<Client> {
 	}
 
 	@Override
-	protected String getName() {
+	protected String getEntityName() {
 		return "Client";
 	}
 }

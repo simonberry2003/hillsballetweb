@@ -52,7 +52,7 @@ public class ClassForm extends AbstractStatelessForm<Classs> {
 	}
 	
 	@Override
-	protected String getName() {
+	protected String getEntityName() {
 		return "Class";
 	}
 }

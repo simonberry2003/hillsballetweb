@@ -42,7 +42,7 @@ public class PeriodForm extends AbstractStatelessForm<Period> {
 	}
 	
 	@Override
-	protected String getName() {
+	protected String getEntityName() {
 		return "Period";
 	}
 }

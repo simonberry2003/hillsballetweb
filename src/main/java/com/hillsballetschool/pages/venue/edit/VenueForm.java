@@ -35,7 +35,7 @@ public class VenueForm extends AbstractStatelessForm<Venue> {
 	}
 	
 	@Override
-	protected String getName() {
+	protected String getEntityName() {
 		return "Venue";
 	}
 }

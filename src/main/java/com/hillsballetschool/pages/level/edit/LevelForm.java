@@ -31,7 +31,7 @@ public class LevelForm extends AbstractStatelessForm<Level> {
 	}
 	
 	@Override
-	protected String getName() {
+	protected String getEntityName() {
 		return "Level";
 	}
 }

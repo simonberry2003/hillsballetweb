@@ -41,16 +41,16 @@ public abstract class AbstractStatelessForm<T> extends StatelessForm<T> {
 			setModel(new CompoundPropertyModel<T>(dao.save(getModel().getObject())));
 			setResponsePage(getResponsePage());
 		} catch (OptimisticLockException e) {
-			error(getName() + " was updated by another user. Please reload and try again.");
+			error(getEntityName() + " was updated by another user. Please reload and try again.");
 		} catch (Exception e) {
 			error(e.getMessage());
 		}
 	}
 
 	/**
-	 * @return the name of the form. Used in error messages.
+	 * @return the name of the entity used in the form. Used in error messages.
 	 */
-	protected abstract String getName();
+	protected abstract String getEntityName();
 
 	protected abstract Class<? extends WebPage> getResponsePage();
 }
