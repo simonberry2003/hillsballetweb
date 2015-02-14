@@ -6,7 +6,7 @@ table.dataview {
 }
 
 table.dataview td, th {
-	border: 1px solid transparent;
+	border: 1px solid;
 	height: 30px;
 	transition: all 0.3s;
 }
@@ -18,7 +18,7 @@ table.dataview th {
 
 table.dataview td {
 	background: #FAFAFA;
-	text-align: center;
+	text-align: left;
 }
 
 table.dataview tr:nth-child(even) td {
@@ -48,7 +48,7 @@ a.menu:hover {
     background-color: fuchsia;
 }
 
-table.dataview a {
+.headers a {
 	color: white;
 }
 
