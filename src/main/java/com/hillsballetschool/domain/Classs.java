@@ -1,14 +1,10 @@
 package com.hillsballetschool.domain;
 
-import java.io.Serializable;
 import java.sql.Time;
 
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -23,9 +19,10 @@ import com.hillsballetschool.field.Field;
 	@NamedQuery(name = Classs.GET, query = "SELECT c FROM Classs c order by c.start")
 })
 @SuppressWarnings("serial")
-public class Classs implements Serializable {
+public class Classs extends AbstractEntity {
 
 	public static final String GET = "getClasss";
+	public static final String CLASS_ID = "class_id";
 
 	public interface Fields {
 		static Field ID = new Field("id", 50); 
@@ -36,10 +33,6 @@ public class Classs implements Serializable {
 		static Field END = new Field("end");
 		static Field[] VALUES = new Field[] {ID, DAY, VENUE, LEVEL, START, END};
 	}
-
-	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Long id;
 
 	@Enumerated(EnumType.STRING)
 	private Day day;
@@ -58,14 +51,6 @@ public class Classs implements Serializable {
 	@Override
 	public String toString() {
 		return EntityToStringHelper.toString(this, Fields.VALUES);
-	}
-	
-	public Long getId() {
-		return id;
-	}
-	
-	public void setId(Long id) {
-		this.id = id;
 	}
 	
 	public Day getDay() {

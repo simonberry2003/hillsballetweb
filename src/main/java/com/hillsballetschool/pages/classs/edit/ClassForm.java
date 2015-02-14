@@ -50,4 +50,9 @@ public class ClassForm extends AbstractStatelessForm<Classs> {
 	protected Class<? extends WebPage> getResponsePage() {
 		return ClassPage.class;
 	}
+	
+	@Override
+	protected String getName() {
+		return "Class";
+	}
 }

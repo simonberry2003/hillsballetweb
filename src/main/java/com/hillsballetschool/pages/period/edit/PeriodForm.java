@@ -40,4 +40,9 @@ public class PeriodForm extends AbstractStatelessForm<Period> {
 	protected Class<? extends WebPage> getResponsePage() {
 		return PeriodPage.class;
 	}
+	
+	@Override
+	protected String getName() {
+		return "Period";
+	}
 }

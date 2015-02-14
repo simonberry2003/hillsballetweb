@@ -37,4 +37,9 @@ public class AccountForm extends AbstractStatelessForm<Account> {
 	protected Class<? extends WebPage> getResponsePage() {
 		return AccountPage.class;
 	}
+
+	@Override
+	protected String getName() {
+		return "Account";
+	}
 }

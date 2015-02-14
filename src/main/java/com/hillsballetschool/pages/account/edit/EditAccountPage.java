@@ -9,7 +9,6 @@ import org.apache.wicket.extensions.markup.html.repeater.data.table.DefaultDataT
 import org.apache.wicket.extensions.markup.html.repeater.data.table.IColumn;
 import org.apache.wicket.markup.html.link.BookmarkablePageLink;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
-import org.apache.wicket.util.string.StringValue;
 
 import com.hillsballetschool.dao.AccountDao;
 import com.hillsballetschool.dao.Dao;
@@ -19,7 +18,6 @@ import com.hillsballetschool.pages.client.ClientProvider;
 import com.hillsballetschool.pages.client.edit.EditClientPage;
 import com.hillsballetschool.pages.edit.AbstractEditPage;
 import com.hillsballetschool.provider.ColumnBuilder;
-import com.hillsballetschool.session.SessionParams;
 
 /**
  * The {@link EditAccountPage} is for creating or updating accounts
@@ -29,11 +27,6 @@ public class EditAccountPage extends AbstractEditPage<Account> {
 
 	@Inject private AccountDao accountDao;
 	@Inject private ClientProvider clientProvider;
-	@Inject private SessionParams sessionParams;
-	
-	public EditAccountPage(PageParameters params) {
-		super(params);
-	}
 	
 	@Override
 	protected Component createForm(Account account) {
@@ -50,7 +43,7 @@ public class EditAccountPage extends AbstractEditPage<Account> {
 		super.onInitialize();
 		
 		BookmarkablePageLink<Void> createClientLink = new BookmarkablePageLink<Void>("createClientLink", EditClientPage.class);
-		Long accountId = getAccountId();
+		Long accountId = getModelId();
 		if (accountId != null) {
 			createClientLink.getPageParameters().add("accountId", accountId);
 		}
@@ -59,13 +52,9 @@ public class EditAccountPage extends AbstractEditPage<Account> {
 		List<IColumn<Client, String>> columns = new ColumnBuilder<Client>(Client.Fields.ID, Client.Fields.VALUES, this, EditClientPage.class).build();
 		add(new DefaultDataTable<Client, String>("datatable", columns, clientProvider, Integer.MAX_VALUE).setVisible(accountId != null));
 	}
-	
-	private Long getAccountId() {
-		return sessionParams.get(Long.class, this, Account.Fields.ID.getName(), Account.ACCOUNT_ID);
-	}
 
 	@Override
-	protected StringValue getModelId() {
-		return StringValue.valueOf(getAccountId());
+	protected String getIdParamName() {
+		return Account.ACCOUNT_ID;
 	}
 }

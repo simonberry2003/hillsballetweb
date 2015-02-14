@@ -44,4 +44,13 @@
           constraintName="unique_class"
           tableName="class" />
 	</changeSet>
+	
+	<changeSet id="2" author="simon">
+        <addColumn tableName="class">
+            <column type="bigint" name="version" defaultValue="1">
+                <constraints nullable="false" />
+            </column>
+        </addColumn>
+    </changeSet>
+	
 </databaseChangeLog>

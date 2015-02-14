@@ -35,5 +35,13 @@
 	<changeSet id="2" author="simon">
 		<renameColumn columnDataType="varchar(50)" newColumnName="emailAddress" oldColumnName="email" tableName="account" />
 	</changeSet>
+
+    <changeSet id="3" author="simon">
+        <addColumn tableName="account">
+            <column type="bigint" name="version" defaultValue="1">
+                <constraints nullable="false" />
+            </column>
+        </addColumn>
+    </changeSet>
 	
 </databaseChangeLog>

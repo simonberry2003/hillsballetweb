@@ -3,7 +3,6 @@ package com.hillsballetschool.pages.period.edit;
 import javax.inject.Inject;
 
 import org.apache.wicket.Component;
-import org.apache.wicket.request.mapper.parameter.PageParameters;
 
 import com.hillsballetschool.dao.Dao;
 import com.hillsballetschool.dao.PeriodDao;
@@ -18,10 +17,6 @@ public class EditPeriodPage extends AbstractEditPage<Period> {
 
 	@Inject
 	private PeriodDao dao;
-	
-	public EditPeriodPage(PageParameters params) {
-		super(params);
-	}
 
 	@Override
 	protected Dao<Period> getDao() {
@@ -31,5 +26,10 @@ public class EditPeriodPage extends AbstractEditPage<Period> {
 	@Override
 	protected Component createForm(Period period) {
 		return new PeriodForm("periodForm", period, dao);
+	}
+
+	@Override
+	protected String getIdParamName() {
+		return Period.PERIOD_ID;
 	}
 }

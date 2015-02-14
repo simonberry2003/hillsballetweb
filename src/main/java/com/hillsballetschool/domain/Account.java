@@ -1,11 +1,6 @@
 package com.hillsballetschool.domain;
 
-import java.io.Serializable;
-
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
@@ -18,7 +13,7 @@ import com.hillsballetschool.field.Field;
 	@NamedQuery(name = Account.GET, query = "SELECT a FROM Account a order by a.surname, a.givenName")
 })
 @SuppressWarnings("serial")
-public class Account implements Serializable {
+public class Account extends AbstractEntity {
 
 	public static final String GET = "getAccount";
 	public static final String ACCOUNT_ID = "accountId";
@@ -35,10 +30,6 @@ public class Account implements Serializable {
 		static Field[] VALUES = new Field[] {ID, GIVEN_NAME, SURNAME, EMAIL_ADDRESS, PHONE, ADDRESS1, ADDRESS2, POSTCODE};
 	}
 
-	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Long id;
-
 	private String givenName;
 	private String surname;
 	private String emailAddress;
@@ -50,14 +41,6 @@ public class Account implements Serializable {
 	@Override
 	public String toString() {
 		return EntityToStringHelper.toString(this, Fields.VALUES);
-	}
-	
-	public Long getId() {
-		return id;
-	}
-	
-	public void setId(Long id) {
-		this.id = id;
 	}
 	
 	public String getGivenName() {

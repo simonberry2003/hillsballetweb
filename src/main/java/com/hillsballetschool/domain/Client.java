@@ -1,12 +1,7 @@
 package com.hillsballetschool.domain;
 
-import java.io.Serializable;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
@@ -19,9 +14,10 @@ import com.hillsballetschool.field.Field;
 	@NamedQuery(name = Client.GET, query = "SELECT c FROM Client c WHERE c.accountId = ?1 ORDER BY c.surname, c.givenName")
 })
 @SuppressWarnings("serial")
-public class Client implements Serializable {
+public class Client extends AbstractEntity {
 
 	public static final String GET = "getClient";
+	public static final String CLIENT_ID = "client_id";
 	
 	public interface Fields {
 		static Field ID = new Field("id", 50); 
@@ -30,10 +26,6 @@ public class Client implements Serializable {
 		static Field MEDICAL = new Field("medical", 1000);
 		static Field[] VALUES = new Field[] {ID, GIVEN_NAME, SURNAME, MEDICAL};
 	}
-
-	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Long id;
 
 	private String givenName;
 	private String surname;
@@ -52,14 +44,6 @@ public class Client implements Serializable {
 	@Override
 	public String toString() {
 		return EntityToStringHelper.toString(this, Fields.VALUES);
-	}
-	
-	public Long getId() {
-		return id;
-	}
-	
-	public void setId(Long id) {
-		this.id = id;
 	}
 	
 	public String getGivenName() {

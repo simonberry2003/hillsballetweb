@@ -1,5 +1,7 @@
 package com.hillsballetschool.pages.edit;
 
+import javax.persistence.OptimisticLockException;
+
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.markup.html.form.StatelessForm;
 import org.apache.wicket.model.CompoundPropertyModel;
@@ -35,9 +37,20 @@ public abstract class AbstractStatelessForm<T> extends StatelessForm<T> {
 	
 	@Override
 	public void onSubmit() {
-		setModel(new CompoundPropertyModel<T>(dao.save(getModel().getObject())));
-		setResponsePage(getResponsePage());
+		try {
+			setModel(new CompoundPropertyModel<T>(dao.save(getModel().getObject())));
+			setResponsePage(getResponsePage());
+		} catch (OptimisticLockException e) {
+			error(getName() + " was updated by another user. Please reload and try again.");
+		} catch (Exception e) {
+			error(e.getMessage());
+		}
 	}
+
+	/**
+	 * @return the name of the form. Used in error messages.
+	 */
+	protected abstract String getName();
 
 	protected abstract Class<? extends WebPage> getResponsePage();
 }

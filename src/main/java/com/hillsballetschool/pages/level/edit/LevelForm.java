@@ -29,4 +29,9 @@ public class LevelForm extends AbstractStatelessForm<Level> {
 	protected Class<? extends WebPage> getResponsePage() {
 		return LevelPage.class;
 	}
+	
+	@Override
+	protected String getName() {
+		return "Level";
+	}
 }

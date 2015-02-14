@@ -1,12 +1,8 @@
 package com.hillsballetschool.domain;
 
-import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
@@ -21,9 +17,10 @@ import com.hillsballetschool.field.Field;
 	@NamedQuery(name = Period.GET, query = "SELECT p FROM Period p order by p.start")
 })
 @SuppressWarnings("serial")
-public class Period implements Serializable {
+public class Period extends AbstractEntity {
 
 	public static final String GET = "getPeriod";
+	public static final String PERIOD_ID = "period_id";
 	
 	public interface Fields {
 		static Field ID = new Field("id", 50); 
@@ -32,10 +29,6 @@ public class Period implements Serializable {
 		static Field END = new Field("end");
 		static Field[] VALUES = new Field[] {ID, NAME, START, END};
 	}
-
-	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Long id;
 
 	private String name;
 	
@@ -48,14 +41,6 @@ public class Period implements Serializable {
 	@Override
 	public String toString() {
 		return EntityToStringHelper.toString(this, Fields.VALUES);
-	}
-	
-	public Long getId() {
-		return id;
-	}
-	
-	public void setId(Long id) {
-		this.id = id;
 	}
 	
 	public String getName() {

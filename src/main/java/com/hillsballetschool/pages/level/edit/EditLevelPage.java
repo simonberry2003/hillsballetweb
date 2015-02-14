@@ -3,7 +3,6 @@ package com.hillsballetschool.pages.level.edit;
 import javax.inject.Inject;
 
 import org.apache.wicket.Component;
-import org.apache.wicket.request.mapper.parameter.PageParameters;
 
 import com.hillsballetschool.dao.Dao;
 import com.hillsballetschool.dao.LevelDao;
@@ -19,10 +18,6 @@ public class EditLevelPage extends AbstractEditPage<Level> {
 	@Inject
 	private LevelDao levelDao;
 	
-	public EditLevelPage(PageParameters params) {
-		super(params);
-	}
-
 	@Override
 	protected Dao<Level> getDao() {
 		return levelDao;
@@ -31,5 +26,10 @@ public class EditLevelPage extends AbstractEditPage<Level> {
 	@Override
 	protected Component createForm(Level level) {
 		return new LevelForm("levelForm", level, levelDao);
+	}
+
+	@Override
+	protected String getIdParamName() {
+		return Level.LEVEL_ID;
 	}
 }

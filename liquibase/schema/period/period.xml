@@ -20,4 +20,12 @@
 		</createTable>
 	</changeSet>
 
+    <changeSet id="2" author="simon">
+        <addColumn tableName="period">
+            <column type="bigint" name="version" defaultValue="1">
+                <constraints nullable="false" />
+            </column>
+        </addColumn>
+    </changeSet>
+
 </databaseChangeLog>

@@ -31,4 +31,9 @@ public class ClientForm extends AbstractStatelessForm<Client> {
 	protected Class<? extends WebPage> getResponsePage() {
 		return EditAccountPage.class;
 	}
+
+	@Override
+	protected String getName() {
+		return "Client";
+	}
 }

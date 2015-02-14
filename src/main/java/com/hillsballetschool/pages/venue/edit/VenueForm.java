@@ -33,4 +33,9 @@ public class VenueForm extends AbstractStatelessForm<Venue> {
 	protected Class<? extends WebPage> getResponsePage() {
 		return VenuePage.class;
 	}
+	
+	@Override
+	protected String getName() {
+		return "Venue";
+	}
 }
