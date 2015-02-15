@@ -20,4 +20,6 @@ public interface SessionParams {
 	<T extends Serializable> T get(Class<T> type, ParameterProvider provider, String paramId, String sessionId);
 
 	<T extends Serializable> T get(String name);
+
+	void clear(String paramId);
 }

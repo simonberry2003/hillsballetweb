@@ -17,7 +17,7 @@ import com.hillsballetschool.field.Field;
 public class Client extends AbstractEntity {
 
 	public static final String GET = "getClient";
-	public static final String CLIENT_ID = "client_id";
+	public static final String CLIENT_ID = "clientId";
 	
 	public interface Fields {
 		static Field ID = new Field("id", 50); 

@@ -17,7 +17,7 @@ public abstract class AbstractEntity implements Serializable {
 	private Long id;
 
 	@Version
-	private Long version;
+	private Long version = 1L;
 
 	public Long getId() {
 		return id;

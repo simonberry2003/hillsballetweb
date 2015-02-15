@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+	<changeSet id="1" author="simon">
+		<createTable tableName="class_period">
+			<column name="id" type="bigint" autoIncrement="true">
+				<constraints primaryKey="true" nullable="false" />
+			</column>
+            <column type="bigint" name="version" defaultValue="1">
+                <constraints nullable="false" />
+            </column>
+            <column name="classId" type="bigint">
+                <constraints nullable="false" />
+            </column>
+            <column name="periodId" type="bigint">
+                <constraints nullable="false" />
+            </column>
+		</createTable>
+
+        <addForeignKeyConstraint 
+          baseColumnNames="classId" 
+          baseTableName="class_period" 
+          constraintName="fk_class_period_class" 
+          referencedColumnNames="id" 
+          referencedTableName="class" />
+
+        <addForeignKeyConstraint 
+          baseColumnNames="periodId" 
+          baseTableName="class_period" 
+          constraintName="fk_class_period_period" 
+          referencedColumnNames="id" 
+          referencedTableName="period" />
+          
+        <addUniqueConstraint 
+          columnNames="classId, periodId"
+          constraintName="unique_class"
+          tableName="class_period" />
+
+	</changeSet>
+
+</databaseChangeLog>

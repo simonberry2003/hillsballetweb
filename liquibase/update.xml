@@ -9,5 +9,6 @@
     <include file="liquibase/schema/venue/venue.xml"/>
     <include file="liquibase/schema/class/class.xml"/>
     <include file="liquibase/schema/client/client.xml"/>
+    <include file="liquibase/schema/class_period/class_period.xml"/>
 
 </databaseChangeLog>

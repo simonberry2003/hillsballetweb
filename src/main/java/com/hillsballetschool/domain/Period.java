@@ -17,7 +17,7 @@ import com.hillsballetschool.field.Field;
 	@NamedQuery(name = Period.GET, query = "SELECT p FROM Period p order by p.start")
 })
 @SuppressWarnings("serial")
-public class Period extends AbstractEntity {
+public class Period extends AbstractEntity implements Comparable<Period> {
 
 	public static final String GET = "getPeriod";
 	public static final String PERIOD_ID = "period_id";
@@ -40,7 +40,7 @@ public class Period extends AbstractEntity {
 
 	@Override
 	public String toString() {
-		return EntityToStringHelper.toString(this, Fields.VALUES);
+		return name;
 	}
 	
 	public String getName() {
@@ -65,5 +65,10 @@ public class Period extends AbstractEntity {
 
 	public void setEnd(Date end) {
 		this.end = end;
+	}
+
+	@Override
+	public int compareTo(Period o) {
+		return start.compareTo(o.start);
 	}
 }

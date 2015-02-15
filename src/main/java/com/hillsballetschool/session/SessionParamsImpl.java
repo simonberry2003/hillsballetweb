@@ -37,4 +37,9 @@ public class SessionParamsImpl implements SessionParams {
 	public <T extends Serializable> T get(String name) {
 		return (T) WebSession.get().getAttribute(name);
 	}
+
+	@Override
+	public void clear(String paramId) {
+		WebSession.get().setAttribute(paramId, null);
+	}
 }

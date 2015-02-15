@@ -23,7 +23,7 @@ public abstract class AbstractEditPage<T> extends MenuWebPage {
 	@Override
 	protected void onInitialize() {
 		super.onInitialize();
-		
+
 		T model = null;
 		StringValue modelParam = StringValue.valueOf(getModelId());
 		if (!modelParam.isNull()) {

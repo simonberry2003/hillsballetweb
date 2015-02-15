@@ -10,6 +10,7 @@ import com.google.inject.persist.PersistService;
 import com.google.inject.persist.jpa.JpaPersistModule;
 import com.hillsballetschool.pages.account.AccountPage;
 import com.hillsballetschool.pages.account.edit.EditAccountPage;
+import com.hillsballetschool.pages.classperiod.edit.EditClassPeriodPage;
 import com.hillsballetschool.pages.classs.ClassPage;
 import com.hillsballetschool.pages.classs.edit.EditClassPage;
 import com.hillsballetschool.pages.client.edit.EditClientPage;
@@ -53,6 +54,7 @@ public class HillsBalletSchoolApplication extends WebApplication {
 		mountPage("/editVenue", EditVenuePage.class);
 		mountPage("/class", ClassPage.class);
 		mountPage("/editClass", EditClassPage.class);
+		mountPage("/editClassPeriod", EditClassPeriodPage.class);
 		mountPage("/editClient", EditClientPage.class);
 	}		
 	

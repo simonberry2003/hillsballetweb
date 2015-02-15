@@ -50,7 +50,7 @@ public class Classs extends AbstractEntity {
 
 	@Override
 	public String toString() {
-		return EntityToStringHelper.toString(this, Fields.VALUES);
+		return day + "-" + venue + "-" + level + "-" + start;
 	}
 	
 	public Day getDay() {

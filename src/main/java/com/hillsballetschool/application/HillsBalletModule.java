@@ -5,6 +5,8 @@ import com.hillsballetschool.dao.AccountDao;
 import com.hillsballetschool.dao.AccountDaoImpl;
 import com.hillsballetschool.dao.ClassDao;
 import com.hillsballetschool.dao.ClassDaoImpl;
+import com.hillsballetschool.dao.ClassPeriodDao;
+import com.hillsballetschool.dao.ClassPeriodDaoImpl;
 import com.hillsballetschool.dao.ClientDao;
 import com.hillsballetschool.dao.ClientDaoImpl;
 import com.hillsballetschool.dao.LevelDao;
@@ -15,6 +17,8 @@ import com.hillsballetschool.dao.VenueDao;
 import com.hillsballetschool.dao.VenueDaoImpl;
 import com.hillsballetschool.pages.account.AccountProvider;
 import com.hillsballetschool.pages.account.AccountProviderImpl;
+import com.hillsballetschool.pages.classperiod.ClassPeriodProvider;
+import com.hillsballetschool.pages.classperiod.ClassPeriodProviderImpl;
 import com.hillsballetschool.pages.classs.ClassProvider;
 import com.hillsballetschool.pages.classs.ClassProviderImpl;
 import com.hillsballetschool.pages.client.ClientProvider;
@@ -45,5 +49,7 @@ public class HillsBalletModule extends AbstractModule {
 		bind(ClientProvider.class).to(ClientProviderImpl.class);
 		bind(ClientDao.class).to(ClientDaoImpl.class);
 		bind(SessionParams.class).to(SessionParamsImpl.class);
+		bind(ClassPeriodDao.class).to(ClassPeriodDaoImpl.class);
+		bind(ClassPeriodProvider.class).to(ClassPeriodProviderImpl.class);
 	}
 }
