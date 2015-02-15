@@ -29,7 +29,7 @@ public class EditLevelPage extends AbstractEditPage<Level> {
 	}
 
 	@Override
-	protected String getIdParamName() {
+	protected String getIdSessionParamName() {
 		return Level.LEVEL_ID;
 	}
 }

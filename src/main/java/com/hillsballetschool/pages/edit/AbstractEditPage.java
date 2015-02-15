@@ -16,7 +16,7 @@ public abstract class AbstractEditPage<T> extends MenuWebPage {
 	@Inject 
 	private SessionParams sessionParams;
 
-	public AbstractEditPage() {
+	protected AbstractEditPage() {
 		setStatelessHint(false);
 	}
 	
@@ -36,10 +36,10 @@ public abstract class AbstractEditPage<T> extends MenuWebPage {
 	}
 
 	protected Long getModelId() {
-		return sessionParams.get(Long.class, this, "id", getIdParamName());
+		return sessionParams.get(Long.class, this, "id", getIdSessionParamName());
 	}
 
-	protected abstract String getIdParamName();
+	protected abstract String getIdSessionParamName();
 	protected abstract Dao<T> getDao();
 	protected abstract Component createForm(T model);
 }

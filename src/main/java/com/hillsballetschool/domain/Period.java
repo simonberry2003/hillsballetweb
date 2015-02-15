@@ -71,4 +71,8 @@ public class Period extends AbstractEntity implements Comparable<Period> {
 	public int compareTo(Period o) {
 		return start.compareTo(o.start);
 	}
+	
+	public Period getPeriod() {
+		return this;
+	}
 }

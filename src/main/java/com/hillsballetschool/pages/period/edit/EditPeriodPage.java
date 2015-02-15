@@ -29,7 +29,7 @@ public class EditPeriodPage extends AbstractEditPage<Period> {
 	}
 
 	@Override
-	protected String getIdParamName() {
+	protected String getIdSessionParamName() {
 		return Period.PERIOD_ID;
 	}
 }

@@ -39,7 +39,7 @@ public class SessionParamsImpl implements SessionParams {
 	}
 
 	@Override
-	public void clear(String paramId) {
-		WebSession.get().setAttribute(paramId, null);
+	public void clear(String sessionId) {
+		WebSession.get().setAttribute(sessionId, null);
 	}
 }

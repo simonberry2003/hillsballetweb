@@ -53,7 +53,7 @@ public class EditAccountPage extends AbstractEditPage<Account> {
 	}
 
 	@Override
-	protected String getIdParamName() {
+	protected String getIdSessionParamName() {
 		return Account.ACCOUNT_ID;
 	}
 }

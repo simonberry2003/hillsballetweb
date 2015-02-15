@@ -5,6 +5,7 @@ import javax.persistence.OptimisticLockException;
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.markup.html.form.StatelessForm;
 import org.apache.wicket.model.CompoundPropertyModel;
+import org.hibernate.exception.ConstraintViolationException;
 
 import com.google.common.base.Preconditions;
 import com.hillsballetschool.dao.Dao;
@@ -43,7 +44,11 @@ public abstract class AbstractStatelessForm<T> extends StatelessForm<T> {
 		} catch (OptimisticLockException e) {
 			error(getEntityName() + " was updated by another user. Please reload and try again.");
 		} catch (Exception e) {
-			error(e.getMessage());
+			if (e.getCause() instanceof ConstraintViolationException) {
+				error(getEntityName() + " has already been added.");
+			} else {
+				error(e.getMessage());
+			}
 		}
 	}
 

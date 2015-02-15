@@ -29,7 +29,7 @@ public class EditVenuePage extends AbstractEditPage<Venue> {
 	}
 
 	@Override
-	protected String getIdParamName() {
+	protected String getIdSessionParamName() {
 		return Venue.VENUE_ID;
 	}
 }

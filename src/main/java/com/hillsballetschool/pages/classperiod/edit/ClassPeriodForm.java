@@ -43,6 +43,6 @@ public class ClassPeriodForm extends AbstractStatelessForm<ClassPeriod> {
 	
 	@Override
 	protected String getEntityName() {
-		return "ClassPeriod";
+		return "Period";
 	}
 }

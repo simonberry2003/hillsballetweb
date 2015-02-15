@@ -57,7 +57,7 @@ public class EditClassPage extends AbstractEditPage<Classs> {
 	}
 
 	@Override
-	protected String getIdParamName() {
+	protected String getIdSessionParamName() {
 		return Classs.CLASS_ID;
 	}
 }
