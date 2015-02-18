@@ -1,0 +1,11 @@
+MySQL 5.5 database added.  Please make note of these credentials:
+
+   Root User: adminvGXbKN8
+   Root Password: 6bhWp8ZRg7-9
+   Database Name: admin
+
+Connection URL: mysql://$OPENSHIFT_MYSQL_DB_HOST:$OPENSHIFT_MYSQL_DB_PORT/
+
+127.4.42.130:3306
+
+mysqldump --user="$OPENSHIFT_MYSQL_DB_USERNAME" --password="$OPENSHIFT_MYSQL_DB_PASSWORD" --host="$OPENSHIFT_MYSQL_DB_HOST" --port="$OPENSHIFT_MYSQL_DB_PORT" --complete-insert admin > app-root/data/admin.sql

@@ -2,45 +2,60 @@
 <body>
     <span wicket:id="mainMenu"></span><br>
     <div wicket:id="feedbackPanel"></div>
-    <form wicket:id="accountForm">
-        <table>
-            <tr>
-                <td align="right">Given Name:</td>
-                <td><input wicket:id="givenName" type="text" /></td>
-            </tr>
-            <tr>
-                <td align="right">Surname:</td>
-                <td><input wicket:id="surname" type="text" /></td>
-            </tr>
-            <tr>
-                <td align="right">Email:</td>
-                <td><input wicket:id="emailAddress" type="text" /></td>
-            </tr>
-            <tr>
-                <td align="right">Phone:</td>
-                <td><input wicket:id="phone" type="text" /></td>
-            </tr>
-            <tr>
-                <td align="right">Address:</td>
-                <td><input wicket:id="address1" type="text" /></td>
-            </tr>
-            <tr>
-                <td align="right"></td>
-                <td><input wicket:id="address2" type="text" /></td>
-            </tr>
-            <tr>
-                <td align="right">Postcode:</td>
-                <td><input wicket:id="postcode" type="text" /></td>
-            </tr>
-            <tr>
-                <td></td>
-                <td><input type="submit" name="submit" value="Save" /></td>
-            </tr>
-        </table>
+    <form class="form-horizontal" wicket:id="accountForm">
+        <div class="form-group">
+            <label class="control-label col-sm-1" for="givenName">Given Name</label>
+            <div class="col-sm-2">
+                <input class="form-control" wicket:id="givenName" type="text" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-1" for="surname">Surname</label>
+            <div class="col-sm-2">
+                <input class="form-control" wicket:id="surname" type="text" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-1" for="emailAddress">Email</label>
+            <div class="col-sm-2">
+                <input class="form-control" wicket:id="emailAddress" type="text" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-1" for="phone">Phone</label>
+            <div class="col-sm-2">
+                <input class="form-control" wicket:id="phone" type="text" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-1" for="address1">Address 1</label>
+            <div class="col-sm-2">
+                <input class="form-control" wicket:id="address1" type="text" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-1" for="address2">Address 2</label>
+            <div class="col-sm-2">
+                <input class="form-control" wicket:id="address2" type="text" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-1" for="postcode">Postcode</label>
+            <div class="col-sm-2">
+                <input class="form-control" wicket:id="postcode" type="text" />
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-offset-1 col-sm-1">
+                <input class="btn btn-default" type="submit" name="submit" value="Save" />
+            </div>
+        </div>
     </form>
     
     <a href="#" wicket:id="createClientLink">Add Client</a>
-    <table class="dataview" wicket:id="datatable"></table>
+    <div class="col-sm-1">
+        <table class="table table-striped" style="width: auto;" wicket:id="datatable"></table>
+    </div>
     
 </body>
 </html>

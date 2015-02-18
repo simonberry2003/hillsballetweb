@@ -1,11 +1,9 @@
 package com.hillsballetschool.pages;
 
-import org.apache.wicket.markup.head.CssHeaderItem;
 import org.apache.wicket.markup.head.IHeaderResponse;
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.request.Url;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
-import org.apache.wicket.request.resource.CssResourceReference;
 
 /**
  * Base {@link WebPage} class for all web pages. Has the addition of some useful methods.
@@ -32,6 +30,8 @@ public abstract class HillsBalletSchoolWebPage extends WebPage implements Parame
 	
 	@Override
 	public void renderHead(IHeaderResponse response) {
-		response.render(CssHeaderItem.forReference(new CssResourceReference(HillsBalletSchoolWebPage.class, "HillsBalletSchool.css")));
+//		response.render(CssHeaderItem.forReference(new CssResourceReference(HillsBalletSchoolWebPage.class, "bootstrap.css")));
+//		response.render(JavaScriptReferenceHeaderItem.forReference(new JavaScriptResourceReference(HillsBalletSchoolWebPage.class, "jquery-2.1.3.min.js")));
+//		response.render(JavaScriptHeaderItem.forScript("$(document).ready( function(){ $('#aboutButton').removeClass('active'); }); $(document).ready( function(){ $('#dashboardButton').addClass('active'); });", "navToggle"));
 	}
 }

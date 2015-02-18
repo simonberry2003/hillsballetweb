@@ -10,7 +10,12 @@
 			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://127.0.0.1:3306/hillsballet" />
 			<property name="javax.persistence.jdbc.user" value="hillsballet" />
 			<property name="javax.persistence.jdbc.password" value="hillsballet" />
-			
+            <!-- 
+            <property name="javax.persistence.jdbc.url" value="jdbc:mysql://127.4.42.130:3306/admin" />
+            <property name="javax.persistence.jdbc.user" value="adminvGXbKN8" />
+            <property name="javax.persistence.jdbc.password" value="6bhWp8ZRg7-9" />
+             -->
+			 
 			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect" />
             <property name="hibernate.show_sql" value="true" />
 						

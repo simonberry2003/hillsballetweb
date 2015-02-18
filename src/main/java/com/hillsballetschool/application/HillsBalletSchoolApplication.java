@@ -21,6 +21,8 @@ import com.hillsballetschool.pages.period.edit.EditPeriodPage;
 import com.hillsballetschool.pages.venue.VenuePage;
 import com.hillsballetschool.pages.venue.edit.EditVenuePage;
 
+import de.agilecoders.wicket.core.Bootstrap;
+
 public class HillsBalletSchoolApplication extends WebApplication {
 	
 	@Override
@@ -56,6 +58,8 @@ public class HillsBalletSchoolApplication extends WebApplication {
 		mountPage("/editClass", EditClassPage.class);
 		mountPage("/editClassPeriod", EditClassPeriodPage.class);
 		mountPage("/editClient", EditClientPage.class);
+		
+		Bootstrap.install(this);
 	}		
 	
 	@Override
