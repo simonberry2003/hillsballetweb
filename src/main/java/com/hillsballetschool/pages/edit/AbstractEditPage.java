@@ -3,7 +3,6 @@ package com.hillsballetschool.pages.edit;
 import javax.inject.Inject;
 
 import org.apache.wicket.Component;
-import org.apache.wicket.markup.html.panel.FeedbackPanel;
 import org.apache.wicket.util.string.StringValue;
 
 import com.hillsballetschool.dao.Dao;
@@ -31,7 +30,6 @@ public abstract class AbstractEditPage<T> extends MenuWebPage {
 			model = getDao().get(id);
 		}
 		
-		add(new FeedbackPanel("feedbackPanel"));
 		add(createForm(model));
 	}
 

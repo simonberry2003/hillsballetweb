@@ -8,6 +8,7 @@ import org.apache.wicket.Component;
 import org.apache.wicket.extensions.markup.html.repeater.data.table.DefaultDataTable;
 import org.apache.wicket.extensions.markup.html.repeater.data.table.IColumn;
 import org.apache.wicket.markup.html.link.BookmarkablePageLink;
+import org.apache.wicket.request.mapper.parameter.PageParameters;
 
 import com.hillsballetschool.dao.AccountDao;
 import com.hillsballetschool.dao.Dao;
@@ -17,6 +18,7 @@ import com.hillsballetschool.pages.client.ClientProvider;
 import com.hillsballetschool.pages.client.edit.EditClientPage;
 import com.hillsballetschool.pages.edit.AbstractEditPage;
 import com.hillsballetschool.provider.ColumnBuilder;
+import com.hillsballetschool.session.SessionParams;
 
 /**
  * The {@link EditAccountPage} is for creating or updating accounts
@@ -26,6 +28,13 @@ public class EditAccountPage extends AbstractEditPage<Account> {
 
 	@Inject private AccountDao accountDao;
 	@Inject private ClientProvider clientProvider;
+	@Inject private SessionParams sessionParams;
+	
+	public EditAccountPage(PageParameters pageParameters) {
+		if (pageParameters.get("id").isNull()) {
+			sessionParams.clear(getIdSessionParamName());
+		}
+	}
 	
 	@Override
 	protected Component createForm(Account account) {

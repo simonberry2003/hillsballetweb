@@ -6,6 +6,8 @@ import org.apache.wicket.validation.validator.StringValidator;
 
 import com.google.common.base.Preconditions;
 
+import de.agilecoders.wicket.core.markup.html.bootstrap.behavior.CssClassNameAppender;
+
 @SuppressWarnings("serial")
 public class FieldText<T> extends TextField<T> {
 	
@@ -18,7 +20,7 @@ public class FieldText<T> extends TextField<T> {
 		}
 		setRequired(true);
 	}
-
+	
 	public FieldText<T> setConverter(IConverter<T> converter) {
 		this.converter = Preconditions.checkNotNull(converter);
 		return this;
@@ -28,5 +30,10 @@ public class FieldText<T> extends TextField<T> {
 	@SuppressWarnings("unchecked")
 	public <C> IConverter<C> getConverter(Class<C> type) {
 		return converter != null ? (IConverter<C>)converter : super.getConverter(type);
+	}
+	
+	public FieldText<T> formControl() {
+		add(new CssClassNameAppender("form-control"));
+		return this;
 	}
 }

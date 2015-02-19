@@ -5,7 +5,6 @@ import org.apache.wicket.validation.validator.EmailAddressValidator;
 
 import com.hillsballetschool.dao.AccountDao;
 import com.hillsballetschool.domain.Account;
-import com.hillsballetschool.field.FieldText;
 import com.hillsballetschool.pages.account.AccountPage;
 import com.hillsballetschool.pages.edit.AbstractStatelessForm;
 
@@ -23,14 +22,12 @@ public class AccountForm extends AbstractStatelessForm<Account> {
 
 	@Override
 	protected void addFields() {
-		add(new FieldText<String>(Account.Fields.GIVEN_NAME));
-		add(new FieldText<String>(Account.Fields.SURNAME));
-		add(new FieldText<String>(Account.Fields.EMAIL_ADDRESS)
-			.add(EmailAddressValidator.getInstance()));
-		add(new FieldText<String>(Account.Fields.PHONE));
-		add(new FieldText<String>(Account.Fields.ADDRESS1));
-		add(new FieldText<String>(Account.Fields.ADDRESS2));
-		add(new FieldText<String>(Account.Fields.POSTCODE));
+		addGroup("groupGivenName", "Given Name", Account.Fields.GIVEN_NAME);
+		addGroup("groupSurname", "Surname", Account.Fields.SURNAME);
+		addGroup("groupEmailAddress", "Email", EmailAddressValidator.getInstance(), Account.Fields.EMAIL_ADDRESS);
+		addGroup("groupPhone", "Phone", Account.Fields.PHONE);
+		addGroup("groupAddress", "Address", Account.Fields.ADDRESS1, Account.Fields.ADDRESS2);
+		addGroup("groupPostcode", "Postcode", Account.Fields.POSTCODE);
 	}
 
 	@Override

@@ -10,7 +10,9 @@ import com.hillsballetschool.pages.menu.MenuWebPage;
 import com.hillsballetschool.pages.period.PeriodPage;
 import com.hillsballetschool.pages.venue.VenuePage;
 
+import de.agilecoders.wicket.core.markup.html.bootstrap.navbar.INavbarComponent;
 import de.agilecoders.wicket.core.markup.html.bootstrap.navbar.Navbar;
+import de.agilecoders.wicket.core.markup.html.bootstrap.navbar.Navbar.Position;
 import de.agilecoders.wicket.core.markup.html.bootstrap.navbar.NavbarButton;
 import de.agilecoders.wicket.core.markup.html.bootstrap.navbar.NavbarComponents;
 
@@ -22,12 +24,18 @@ public class Menu extends Panel {
 	
 	public Menu(String id) {
 		super(id);
-		Navbar navbar = new Navbar("navbar");
-		navbar.addComponents(NavbarComponents.transform(Navbar.ComponentPosition.LEFT, new NavbarButton<String>(AccountPage.class, Model.of("Accounts"))));
-		navbar.addComponents(NavbarComponents.transform(Navbar.ComponentPosition.LEFT, new NavbarButton<String>(LevelPage.class, Model.of("Levels"))));
-		navbar.addComponents(NavbarComponents.transform(Navbar.ComponentPosition.LEFT, new NavbarButton<String>(PeriodPage.class, Model.of("Periods"))));
-		navbar.addComponents(NavbarComponents.transform(Navbar.ComponentPosition.LEFT, new NavbarButton<String>(VenuePage.class, Model.of("Venues"))));
-		navbar.addComponents(NavbarComponents.transform(Navbar.ComponentPosition.LEFT, new NavbarButton<String>(ClassPage.class, Model.of("Classes"))));
+		Navbar navbar = new Navbar("navbar")
+			.setBrandName(Model.of("HBS"))
+			.setPosition(Position.TOP)
+			.addComponents(makePageComponent(AccountPage.class, "Accounts"))
+			.addComponents(makePageComponent(LevelPage.class, "Levels"))
+			.addComponents(makePageComponent(PeriodPage.class, "Periods"))
+			.addComponents(makePageComponent(VenuePage.class, "Venues"))
+			.addComponents(makePageComponent(ClassPage.class, "Classes"));
 		add(navbar);
+	}
+
+	private INavbarComponent makePageComponent(Class<? extends MenuWebPage> pageClass, String title) {
+		return NavbarComponents.transform(Navbar.ComponentPosition.LEFT, new NavbarButton<String>(pageClass, Model.of(title))).get(0);
 	}
 }
