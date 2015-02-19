@@ -15,6 +15,7 @@ public class BootstrapTable<T, S> extends DefaultDataTable<T, S> {
 		super(id, columns, dataProvider, rowsPerPage);
 		TransparentWebMarkupContainer table = new TransparentWebMarkupContainer("table");
         table.add(new AttributeModifier("class", "table table-striped table-condensed"));
+        table.add(new AttributeModifier("style", "width: auto;"));
         add(table);
 	}
 }
