@@ -20,8 +20,6 @@ import com.hillsballetschool.field.TimeConverter;
 import com.hillsballetschool.pages.classs.ClassPage;
 import com.hillsballetschool.pages.edit.AbstractStatelessForm;
 
-import de.agilecoders.wicket.core.markup.html.bootstrap.behavior.CssClassNameAppender;
-
 @SuppressWarnings("serial")
 public class ClassForm extends AbstractStatelessForm<Classs> {
 
@@ -42,21 +40,11 @@ public class ClassForm extends AbstractStatelessForm<Classs> {
 	@Override
 	protected void addFields() {
 		Classs classs = getModel().getObject();
-		addGroup("groupDay", "Day", new DropDownChoice<Day>("day", new PropertyModel<Day>(classs, Classs.Fields.DAY.getName()), ImmutableList.<Day>copyOf(Day.values()))
-				.setRequired(true)
-				.add(new CssClassNameAppender("form-control")));
-		addGroup("groupVenue", "Venue", new DropDownChoice<Venue>("venue", new PropertyModel<Venue>(classs, Classs.Fields.VENUE.getName()), venueDao.getAll())
-				.setRequired(true)
-				.add(new CssClassNameAppender("form-control")));
-		addGroup("groupLevel", "Level", new DropDownChoice<Level>("level", new PropertyModel<Level>(classs, Classs.Fields.LEVEL.getName()), levelDao.getAll())
-				.setRequired(true)
-				.add(new CssClassNameAppender("form-control")));
-		addGroup("groupStart", "Start", new FieldText<Time>(Classs.Fields.START)
-				.setConverter(new TimeConverter())
-				.formControl());
-		addGroup("groupEnd", "End", new FieldText<Time>(Classs.Fields.END)
-				.setConverter(new TimeConverter())
-				.formControl());
+		addGroup("groupDay", "Day", new DropDownChoice<Day>("day", new PropertyModel<Day>(classs, Classs.Fields.DAY.getName()), ImmutableList.<Day>copyOf(Day.values())).setRequired(true));
+		addGroup("groupVenue", "Venue", new DropDownChoice<Venue>("venue", new PropertyModel<Venue>(classs, Classs.Fields.VENUE.getName()), venueDao.getAll()).setRequired(true));
+		addGroup("groupLevel", "Level", new DropDownChoice<Level>("level", new PropertyModel<Level>(classs, Classs.Fields.LEVEL.getName()), levelDao.getAll()).setRequired(true));
+		addGroup("groupStart", "Start", new FieldText<Time>(Classs.Fields.START).setConverter(new TimeConverter()).formControl());
+		addGroup("groupEnd", "End", new FieldText<Time>(Classs.Fields.END).setConverter(new TimeConverter()).formControl());
 	}
 
 	@Override

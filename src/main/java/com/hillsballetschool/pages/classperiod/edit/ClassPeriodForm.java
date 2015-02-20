@@ -14,8 +14,6 @@ import com.hillsballetschool.domain.Period;
 import com.hillsballetschool.pages.classs.edit.EditClassPage;
 import com.hillsballetschool.pages.edit.AbstractStatelessForm;
 
-import de.agilecoders.wicket.core.markup.html.bootstrap.behavior.CssClassNameAppender;
-
 @SuppressWarnings("serial")
 public class ClassPeriodForm extends AbstractStatelessForm<ClassPeriod> {
 
@@ -35,9 +33,7 @@ public class ClassPeriodForm extends AbstractStatelessForm<ClassPeriod> {
 	@Override
 	protected void addFields() {
 		ClassPeriod classPeriod = getModel().getObject();
-		addGroup("groupPeriod", "Period", new DropDownChoice<Period>("period", new PropertyModel<Period>(classPeriod, ClassPeriod.Fields.PERIOD.getName()), periodDao.getAll())
-			.setRequired(true)
-			.add(new CssClassNameAppender("form-control")));
+		addGroup("groupPeriod", "Period", new DropDownChoice<Period>("period", new PropertyModel<Period>(classPeriod, ClassPeriod.Fields.PERIOD.getName()), periodDao.getAll()).setRequired(true));
 	}
 
 	@Override

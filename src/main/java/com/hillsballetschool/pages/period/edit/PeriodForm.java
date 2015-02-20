@@ -7,10 +7,9 @@ import org.apache.wicket.markup.html.form.FormComponent;
 
 import com.hillsballetschool.dao.PeriodDao;
 import com.hillsballetschool.domain.Period;
+import com.hillsballetschool.form.FormGroup2;
 import com.hillsballetschool.pages.edit.AbstractStatelessForm;
 import com.hillsballetschool.pages.period.PeriodPage;
-
-import de.agilecoders.wicket.core.markup.html.bootstrap.form.FormGroup;
 
 @SuppressWarnings("serial")
 public class PeriodForm extends AbstractStatelessForm<Period> {
@@ -24,14 +23,13 @@ public class PeriodForm extends AbstractStatelessForm<Period> {
 		return new Period();
 	}
 
-	@SuppressWarnings("unchecked")
 	@Override
 	protected void addFields() {
 		addGroup("groupName", "Name", Period.Fields.NAME);
-		FormGroup startDateGroup = addGroup("groupStart", "Start", Period.Fields.START);
-		FormGroup endDateGroup = addGroup("groupEnd", "End", Period.Fields.END);
-		FormComponent<Date> startDateField = (FormComponent<Date>) startDateGroup.getBodyContainer().get("start");
-		FormComponent<Date> endDateField = (FormComponent<Date>) startDateGroup.getBodyContainer().get(endDateGroup.getBodyContainer().size()-1);
+		FormGroup2 startDateGroup = addGroup("groupStart", "Start", Period.Fields.START);
+		FormGroup2 endDateGroup = addGroup("groupEnd", "End", Period.Fields.END);
+		FormComponent<Date> startDateField = startDateGroup.getChild("start");
+		FormComponent<Date> endDateField = endDateGroup.getChild("end");
 		add(new StartEndDateValidator(startDateField, endDateField));
 	}
 

@@ -6,16 +6,16 @@ import org.apache.wicket.Component;
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.model.CompoundPropertyModel;
 import org.apache.wicket.model.Model;
-import org.apache.wicket.validation.IValidator;
 import org.hibernate.exception.ConstraintViolationException;
 
-import com.google.common.base.Optional;
 import com.google.common.base.Preconditions;
 import com.hillsballetschool.dao.Dao;
 import com.hillsballetschool.field.Field;
 import com.hillsballetschool.field.FieldText;
 import com.hillsballetschool.form.FormGroup2;
+import com.hillsballetschool.pages.account.AccountPage;
 
+import de.agilecoders.wicket.core.markup.html.bootstrap.behavior.CssClassNameAppender;
 import de.agilecoders.wicket.core.markup.html.bootstrap.button.BootstrapButton;
 import de.agilecoders.wicket.core.markup.html.bootstrap.button.Buttons;
 import de.agilecoders.wicket.core.markup.html.bootstrap.form.BootstrapForm;
@@ -49,10 +49,22 @@ public abstract class AbstractStatelessForm<T> extends BootstrapForm<T> {
 		addFields();
 
 		FormGroup button = new FormGroup("groupButton");
+        add(button);
+
         BootstrapButton submitButton = new BootstrapButton("submit-button", Buttons.Type.Primary);
         submitButton.setLabel(Model.of("Save"));
         button.add(submitButton);
         add(button);
+
+        BootstrapButton backButton = new BootstrapButton("back-button", Buttons.Type.Primary) {
+        	@Override
+			public void onSubmit() {
+        		getRequestCycle().setResponsePage(AccountPage.class);
+        	};
+        };
+        backButton.setDefaultFormProcessing(false);
+        backButton.setLabel(Model.of("Back"));
+        button.add(backButton);
 	}
 	
 	protected abstract void addFields();
@@ -80,30 +92,21 @@ public abstract class AbstractStatelessForm<T> extends BootstrapForm<T> {
 
 	protected abstract Class<? extends WebPage> getResponsePage();
 	
-	protected FormGroup addGroup(String name, String label, Field...fields) {
-		return addGroup(name, label, Optional.<IValidator<String>>absent(), fields);
-	}
-
-	protected FormGroup addGroup(String name, String label, IValidator<String> validator, Field...fields) {
-		return addGroup(name, label, Optional.of(validator), fields);
-	}
-
-	protected FormGroup addGroup(String name, String label, Optional<IValidator<String>> validator, Field...fields) {
-		FormGroup group = new FormGroup2(name, label).size(Size.Small);
+	protected FormGroup2 addGroup(String name, String label, Field...fields) {
+		FormGroup2 group = new FormGroup2(name, label);
+		group.size(Size.Small);
 		for (Field field : fields) {
 			FieldText<String> textField = new FieldText<String>(field).formControl();
-			if (validator.isPresent()) {
-				textField.add(validator.get());
-			}
 			group.add(textField);
 		}
         add(group);
         return group;
 	}
 
-	protected FormGroup addGroup(String name, String label, Component component) {
-		FormGroup group = new FormGroup2(name, label).size(Size.Small);
-		group.add(component);
+	protected FormGroup2 addGroup(String name, String label, Component component) {
+		FormGroup2 group = new FormGroup2(name, label);
+		group.size(Size.Small);
+		group.add(component.add(new CssClassNameAppender("form-control")));
         add(group);
         return group;
 	}

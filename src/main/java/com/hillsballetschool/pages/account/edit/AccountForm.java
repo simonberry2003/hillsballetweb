@@ -24,7 +24,8 @@ public class AccountForm extends AbstractStatelessForm<Account> {
 	protected void addFields() {
 		addGroup("groupGivenName", "Given Name", Account.Fields.GIVEN_NAME);
 		addGroup("groupSurname", "Surname", Account.Fields.SURNAME);
-		addGroup("groupEmailAddress", "Email", EmailAddressValidator.getInstance(), Account.Fields.EMAIL_ADDRESS);
+		addGroup("groupEmailAddress", "Email", Account.Fields.EMAIL_ADDRESS)
+			.addValidator(Account.Fields.EMAIL_ADDRESS, EmailAddressValidator.getInstance());
 		addGroup("groupPhone", "Phone", Account.Fields.PHONE);
 		addGroup("groupAddress", "Address", Account.Fields.ADDRESS1, Account.Fields.ADDRESS2);
 		addGroup("groupPostcode", "Postcode", Account.Fields.POSTCODE);
