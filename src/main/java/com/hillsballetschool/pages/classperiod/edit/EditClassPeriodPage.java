@@ -13,7 +13,6 @@ import com.hillsballetschool.dao.PeriodDao;
 import com.hillsballetschool.domain.ClassPeriod;
 import com.hillsballetschool.domain.Classs;
 import com.hillsballetschool.pages.edit.AbstractEditPage;
-import com.hillsballetschool.session.SessionParams;
 
 @SuppressWarnings("serial")
 public class EditClassPeriodPage extends AbstractEditPage<ClassPeriod> {
@@ -21,8 +20,8 @@ public class EditClassPeriodPage extends AbstractEditPage<ClassPeriod> {
 	@Inject private ClassPeriodDao classPeriodDao;
 	@Inject private PeriodDao periodDao;
 	@Inject private ClassDao classDao;
-	@Inject private SessionParams sessionParams;
 	
+	// TODO: Move to base class
 	public EditClassPeriodPage(PageParameters pageParameters) {
 		if (pageParameters.get("id").isNull()) {
 			sessionParams.clear(getIdSessionParamName());

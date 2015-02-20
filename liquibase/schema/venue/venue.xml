@@ -34,4 +34,11 @@
         </addColumn>
     </changeSet>
 
+    <changeSet id="3" author="simon">
+        <addUniqueConstraint 
+          columnNames="name"
+          constraintName="unique_name"
+          tableName="venue" />
+    </changeSet>
+
 </databaseChangeLog>

@@ -1,37 +1,52 @@
 <html xmlns:wicket="http://wicket.apache.org">
 <body>
     <span wicket:id="mainMenu"></span><br>
-    <form wicket:id="classForm">
-        <table>
-            <tr>
-                <td align="right">Day:</td>
-                <td><select wicket:id="day"></select></td>
-            </tr>
-            <tr>
-                <td align="right">Venue:</td>
-                <td><select wicket:id="venue"></select></td>
-            </tr>
-            <tr>
-                <td align="right">Level:</td>
-                <td><select wicket:id="level"></select></td>
-            </tr>
-            <tr>
-                <td align="right">Start:</td>
-                <td><input wicket:id="start" type="text" /></td>
-            </tr>
-            <tr>
-                <td align="right">End:</td>
-                <td><input wicket:id="end" type="text" /></td>
-            </tr>
-            <tr>
-                <td></td>
-                <td><input type="submit" name="submit" value="Save" /></td>
-            </tr>
-        </table>
-    </form>
-    
-    <a href="#" wicket:id="createClientPeriodLink">Add Period</a>
-    <table class="table table-striped" wicket:id="datatable"></table>
-    
+    <div class="container">
+        <div class="jumbotron">
+            <form wicket:id="classForm">
+                <div wicket:id="groupDay">
+                    <div class="col-sm-4">
+                        <select wicket:id="day"></select>
+                    </div>
+                </div>
+                <div wicket:id="groupVenue">
+                    <div class="col-sm-4">
+                        <select wicket:id="venue"></select>
+                    </div>
+                </div>
+                <div wicket:id="groupLevel">
+                    <div class="col-sm-4">
+                        <select wicket:id="level"></select>
+                    </div>
+                </div>
+                <div wicket:id="groupStart">
+                    <div class="col-sm-4">
+                        <input wicket:id="start" type="text" />
+                    </div>
+                </div>
+                <div wicket:id="groupEnd">
+                    <div class="col-sm-4">
+                        <input wicket:id="end" type="text" />
+                    </div>
+                </div>
+                <div wicket:id="groupButton">
+                    <div class="col-sm-offset-1 col-sm-1">
+                        <button wicket:id="submit-button" type="submit" class="btn btn-default">Save</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="col-sm-offset-1 col-sm-10" style="color:red" wicket:id="feedbackPanel"></div>
+
+        <a class="btn btn-primary btn-sm" href="#" wicket:id="createClientPeriodLink">Add Period</a>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-1">
+                    <table class="table table-striped" style="width: auto;" wicket:id="datatable"></table>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 </html>

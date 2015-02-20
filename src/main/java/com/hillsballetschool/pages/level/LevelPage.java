@@ -19,14 +19,13 @@ import com.hillsballetschool.table.BootstrapTable;
 @SuppressWarnings("serial")
 public class LevelPage extends MenuWebPage {
 
-	@Inject
-	private LevelProvider levelProvider;
+	@Inject private LevelProvider levelProvider;
 	
 	@Override
 	protected void onInitialize() {
 		super.onInitialize();
 		List<IColumn<Level, String>> columns = new ColumnBuilder<Level>(Level.Fields.ID, Level.Fields.VALUES, this, EditLevelPage.class).build();
-		add(new BookmarkablePageLink<Void>("createLevelLink", EditLevelPage.class));
+		add(new BookmarkablePageLink<Void>("createLink", EditLevelPage.class));
         add(new BootstrapTable<Level, String>("datatable", columns, levelProvider, Integer.MAX_VALUE));
 	}
 }

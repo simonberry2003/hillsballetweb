@@ -8,6 +8,7 @@ import org.apache.wicket.Component;
 import org.apache.wicket.extensions.markup.html.repeater.data.table.DefaultDataTable;
 import org.apache.wicket.extensions.markup.html.repeater.data.table.IColumn;
 import org.apache.wicket.markup.html.link.BookmarkablePageLink;
+import org.apache.wicket.request.mapper.parameter.PageParameters;
 
 import com.hillsballetschool.dao.ClassDao;
 import com.hillsballetschool.dao.Dao;
@@ -20,9 +21,6 @@ import com.hillsballetschool.pages.classperiod.edit.EditClassPeriodPage;
 import com.hillsballetschool.pages.edit.AbstractEditPage;
 import com.hillsballetschool.provider.ColumnBuilder;
 
-/**
- * The {@link EditClassPage} is for creating or updating class times
- */
 @SuppressWarnings("serial")
 public class EditClassPage extends AbstractEditPage<Classs> {
 
@@ -30,6 +28,13 @@ public class EditClassPage extends AbstractEditPage<Classs> {
 	@Inject private VenueDao venueDao;
 	@Inject private LevelDao levelDao;
 	@Inject private ClassPeriodProvider classPeriodProvider;
+
+	// TODO: Move to base class
+	public EditClassPage(PageParameters pageParameters) {
+		if (pageParameters.get("id").isNull()) {
+			sessionParams.clear(getIdSessionParamName());
+		}
+	}
 
 	@Override
 	protected Dao<Classs> getDao() {

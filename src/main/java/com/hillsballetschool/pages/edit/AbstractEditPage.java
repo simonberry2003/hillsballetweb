@@ -3,6 +3,8 @@ package com.hillsballetschool.pages.edit;
 import javax.inject.Inject;
 
 import org.apache.wicket.Component;
+import org.apache.wicket.feedback.ComponentFeedbackMessageFilter;
+import org.apache.wicket.markup.html.panel.FeedbackPanel;
 import org.apache.wicket.util.string.StringValue;
 
 import com.hillsballetschool.dao.Dao;
@@ -12,8 +14,7 @@ import com.hillsballetschool.session.SessionParams;
 @SuppressWarnings("serial")
 public abstract class AbstractEditPage<T> extends MenuWebPage {
 
-	@Inject 
-	private SessionParams sessionParams;
+	@Inject protected SessionParams sessionParams;
 
 	protected AbstractEditPage() {
 		setStatelessHint(false);
@@ -30,7 +31,9 @@ public abstract class AbstractEditPage<T> extends MenuWebPage {
 			model = getDao().get(id);
 		}
 		
-		add(createForm(model));
+		Component form = createForm(model);
+		add(form);
+		add(new FeedbackPanel("feedbackPanel", new ComponentFeedbackMessageFilter(form)));
 	}
 
 	protected Long getModelId() {

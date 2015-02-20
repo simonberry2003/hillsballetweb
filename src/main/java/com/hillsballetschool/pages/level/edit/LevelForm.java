@@ -4,7 +4,6 @@ import org.apache.wicket.markup.html.WebPage;
 
 import com.hillsballetschool.dao.LevelDao;
 import com.hillsballetschool.domain.Level;
-import com.hillsballetschool.field.FieldText;
 import com.hillsballetschool.pages.edit.AbstractStatelessForm;
 import com.hillsballetschool.pages.level.LevelPage;
 
@@ -22,7 +21,7 @@ public class LevelForm extends AbstractStatelessForm<Level> {
 
 	@Override
 	protected void addFields() {
-		add(new FieldText<String>(Level.Fields.NAME));
+		addGroup("groupName", "Name", Level.Fields.NAME);
 	}
 
 	@Override

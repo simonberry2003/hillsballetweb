@@ -1,33 +1,38 @@
 <html xmlns:wicket="http://wicket.apache.org">
 <body>
     <span wicket:id="mainMenu"></span><br>
-    <form wicket:id="venueForm">
-        <table>
-            <tr>
-                <td align="right">Name:</td>
-                <td><input wicket:id="name" type="text" /></td>
-            </tr>
-            <tr>
-                <td align="right">Phone:</td>
-                <td><input wicket:id="phone" type="text" /></td>
-            </tr>
-            <tr>
-                <td align="right">Address:</td>
-                <td><input wicket:id="address1" type="text" /></td>
-            </tr>
-            <tr>
-                <td align="right"></td>
-                <td><input wicket:id="address2" type="text" /></td>
-            </tr>
-            <tr>
-                <td align="right">Postcode:</td>
-                <td><input wicket:id="postcode" type="text" /></td>
-            </tr>
-            <tr>
-                <td></td>
-                <td><input type="submit" name="submit" value="Save" /></td>
-            </tr>
-        </table>
-    </form>
+    <div class="container">
+        <div class="jumbotron">
+            <form wicket:id="venueForm">
+                <div wicket:id="groupName">
+                    <div class="col-sm-4">
+                        <input wicket:id="name" type="text" />
+                    </div>
+                </div>
+                <div wicket:id="groupPhone">
+                    <div class="col-sm-4">
+                        <input wicket:id="phone" type="text" />
+                    </div>
+                </div>
+                <div wicket:id="groupAddress">
+                    <div class="col-sm-4">
+                        <input wicket:id="address1" type="text" />
+                        <input wicket:id="address2" type="text" />
+                    </div>
+                </div>
+                <div wicket:id="groupPostcode">
+                    <div class="col-sm-4">
+                        <input wicket:id="postcode" type="text" />
+                    </div>
+                </div>
+                <div wicket:id="groupButton">
+                    <div class="col-sm-offset-1 col-sm-1">
+                        <button wicket:id="submit-button" type="submit" class="btn btn-default">Save</button>
+                    </div>
+                </div>
+            </form>
+            <div class="col-sm-offset-1 col-sm-10" style="color:red" wicket:id="feedbackPanel"></div>
+        </div>
+    </div>
 </body>
 </html>

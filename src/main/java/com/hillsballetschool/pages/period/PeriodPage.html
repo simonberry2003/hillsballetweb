@@ -1,8 +1,11 @@
 <html xmlns:wicket="http://wicket.apache.org">
 <body>
     <span wicket:id="mainMenu"></span>
-    <h1>Periods</h1>
-    <a href="#" wicket:id="createPeriodLink">Add Period</a>
-    <table class="table table-striped" wicket:id="datatable"></table>
+    <div class="container">
+        <div class="jumbotron">
+           <a class="btn btn-primary btn-sm" href="#" wicket:id="createLink">Add</a>
+           <table wicket:id="datatable"></table>
+        </div>
+    </div>
 </body>
 </html>

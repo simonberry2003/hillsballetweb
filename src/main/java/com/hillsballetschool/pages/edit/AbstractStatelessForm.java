@@ -2,6 +2,7 @@ package com.hillsballetschool.pages.edit;
 
 import javax.persistence.OptimisticLockException;
 
+import org.apache.wicket.Component;
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.model.CompoundPropertyModel;
 import org.apache.wicket.model.Model;
@@ -49,7 +50,7 @@ public abstract class AbstractStatelessForm<T> extends BootstrapForm<T> {
 
 		FormGroup button = new FormGroup("groupButton");
         BootstrapButton submitButton = new BootstrapButton("submit-button", Buttons.Type.Primary);
-        submitButton.setLabel(Model.of("Submit"));
+        submitButton.setLabel(Model.of("Save"));
         button.add(submitButton);
         add(button);
 	}
@@ -79,15 +80,15 @@ public abstract class AbstractStatelessForm<T> extends BootstrapForm<T> {
 
 	protected abstract Class<? extends WebPage> getResponsePage();
 	
-	protected void addGroup(String name, String label, Field...fields) {
-		addGroup(name, label, Optional.<IValidator<String>>absent(), fields);
+	protected FormGroup addGroup(String name, String label, Field...fields) {
+		return addGroup(name, label, Optional.<IValidator<String>>absent(), fields);
 	}
 
-	protected void addGroup(String name, String label, IValidator<String> validator, Field...fields) {
-		addGroup(name, label, Optional.of(validator), fields);
+	protected FormGroup addGroup(String name, String label, IValidator<String> validator, Field...fields) {
+		return addGroup(name, label, Optional.of(validator), fields);
 	}
 
-	protected void addGroup(String name, String label, Optional<IValidator<String>> validator, Field...fields) {
+	protected FormGroup addGroup(String name, String label, Optional<IValidator<String>> validator, Field...fields) {
 		FormGroup group = new FormGroup2(name, label).size(Size.Small);
 		for (Field field : fields) {
 			FieldText<String> textField = new FieldText<String>(field).formControl();
@@ -97,5 +98,13 @@ public abstract class AbstractStatelessForm<T> extends BootstrapForm<T> {
 			group.add(textField);
 		}
         add(group);
+        return group;
+	}
+
+	protected FormGroup addGroup(String name, String label, Component component) {
+		FormGroup group = new FormGroup2(name, label).size(Size.Small);
+		group.add(component);
+        add(group);
+        return group;
 	}
 }

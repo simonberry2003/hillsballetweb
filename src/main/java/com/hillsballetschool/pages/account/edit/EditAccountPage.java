@@ -18,18 +18,14 @@ import com.hillsballetschool.pages.client.ClientProvider;
 import com.hillsballetschool.pages.client.edit.EditClientPage;
 import com.hillsballetschool.pages.edit.AbstractEditPage;
 import com.hillsballetschool.provider.ColumnBuilder;
-import com.hillsballetschool.session.SessionParams;
 
-/**
- * The {@link EditAccountPage} is for creating or updating accounts
- */
 @SuppressWarnings("serial")
 public class EditAccountPage extends AbstractEditPage<Account> {
 
 	@Inject private AccountDao accountDao;
 	@Inject private ClientProvider clientProvider;
-	@Inject private SessionParams sessionParams;
 	
+	// TODO: Move to base class
 	public EditAccountPage(PageParameters pageParameters) {
 		if (pageParameters.get("id").isNull()) {
 			sessionParams.clear(getIdSessionParamName());
