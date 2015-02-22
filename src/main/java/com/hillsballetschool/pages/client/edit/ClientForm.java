@@ -4,7 +4,6 @@ import org.apache.wicket.markup.html.WebPage;
 
 import com.hillsballetschool.dao.ClientDao;
 import com.hillsballetschool.domain.Client;
-import com.hillsballetschool.field.FieldText;
 import com.hillsballetschool.pages.account.edit.EditAccountPage;
 import com.hillsballetschool.pages.edit.AbstractStatelessForm;
 
@@ -22,9 +21,9 @@ public class ClientForm extends AbstractStatelessForm<Client> {
 
 	@Override
 	protected void addFields() {
-		add(new FieldText<String>(Client.Fields.GIVEN_NAME));
-		add(new FieldText<String>(Client.Fields.SURNAME));
-		add(new FieldText<String>(Client.Fields.MEDICAL));
+		addGroup("groupGivenName", "Given Name", Client.Fields.GIVEN_NAME);
+		addGroup("groupSurname", "Surname", Client.Fields.SURNAME);
+		addGroup("groupMedical", "Medical", Client.Fields.MEDICAL);
 	}
 
 	@Override

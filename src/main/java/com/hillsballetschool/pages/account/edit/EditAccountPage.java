@@ -8,7 +8,6 @@ import org.apache.wicket.Component;
 import org.apache.wicket.extensions.markup.html.repeater.data.table.DefaultDataTable;
 import org.apache.wicket.extensions.markup.html.repeater.data.table.IColumn;
 import org.apache.wicket.markup.html.link.BookmarkablePageLink;
-import org.apache.wicket.request.mapper.parameter.PageParameters;
 
 import com.hillsballetschool.dao.AccountDao;
 import com.hillsballetschool.dao.Dao;
@@ -24,12 +23,9 @@ public class EditAccountPage extends AbstractEditPage<Account> {
 
 	@Inject private AccountDao accountDao;
 	@Inject private ClientProvider clientProvider;
-	
-	// TODO: Move to base class
-	public EditAccountPage(PageParameters pageParameters) {
-		if (pageParameters.get("id").isNull()) {
-			sessionParams.clear(getIdSessionParamName());
-		}
+
+	public EditAccountPage() {
+		System.out.println();
 	}
 	
 	@Override

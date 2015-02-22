@@ -3,7 +3,6 @@ package com.hillsballetschool.pages.client.edit;
 import javax.inject.Inject;
 
 import org.apache.wicket.Component;
-import org.apache.wicket.request.mapper.parameter.PageParameters;
 
 import com.hillsballetschool.dao.ClientDao;
 import com.hillsballetschool.dao.Dao;
@@ -14,13 +13,6 @@ import com.hillsballetschool.pages.edit.AbstractEditPage;
 public class EditClientPage extends AbstractEditPage<Client> {
 
 	@Inject private ClientDao clientDao;
-
-	// TODO: Move to base class
-	public EditClientPage(PageParameters pageParameters) {
-		if (pageParameters.get("id").isNull()) {
-			sessionParams.clear(getIdSessionParamName());
-		}
-	}
 
 	@Override
 	protected Component createForm(Client client) {

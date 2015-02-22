@@ -13,7 +13,6 @@ import com.hillsballetschool.dao.Dao;
 import com.hillsballetschool.field.Field;
 import com.hillsballetschool.field.FieldText;
 import com.hillsballetschool.form.FormGroup2;
-import com.hillsballetschool.pages.account.AccountPage;
 
 import de.agilecoders.wicket.core.markup.html.bootstrap.behavior.CssClassNameAppender;
 import de.agilecoders.wicket.core.markup.html.bootstrap.button.BootstrapButton;
@@ -59,7 +58,7 @@ public abstract class AbstractStatelessForm<T> extends BootstrapForm<T> {
         BootstrapButton backButton = new BootstrapButton("back-button", Buttons.Type.Primary) {
         	@Override
 			public void onSubmit() {
-        		getRequestCycle().setResponsePage(AccountPage.class);
+        		getRequestCycle().setResponsePage(getResponsePage());
         	};
         };
         backButton.setDefaultFormProcessing(false);

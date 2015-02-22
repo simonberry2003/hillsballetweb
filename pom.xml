@@ -11,6 +11,30 @@
 		<wicket-version>6.16.0</wicket-version>
 	</properties>
 
+	<profiles>
+		<profile>
+			<id>dev</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<properties>
+				<db.username>hillsballet</db.username>
+				<db.password>hillsballet</db.password>
+				<db.connectionURL>jdbc:mysql://127.0.0.1:3306/hillsballet</db.connectionURL>
+				<liquibase.property.file>src/main/resources/dev.liquibase.properties</liquibase.property.file>
+			</properties>
+		</profile>
+		<profile>
+			<id>prod</id>
+			<properties>
+				<db.username>adminvGXbKN8</db.username>
+				<db.password>6bhWp8ZRg7-9</db.password>
+				<db.connectionURL>jdbc:mysql://127.4.42.130:3306/admin</db.connectionURL>
+                <liquibase.property.file>src/main/resources/prod.liquibase.properties</liquibase.property.file>
+			</properties>
+		</profile>
+	</profiles>
+
 	<dependencies>
 		<!-- Google -->
 		<dependency>
@@ -175,7 +199,7 @@
 				<configuration>
 					<changeLogFile>liquibase/update.xml</changeLogFile>
 					<driver>com.mysql.jdbc.Driver</driver>
-					<propertyFile>src/main/resources/liquibase.properties</propertyFile>
+					<propertyFile>${liquibase.property.file}</propertyFile>
 				</configuration>
 				<executions>
 					<execution>
@@ -189,7 +213,7 @@
 		</plugins>
 		<resources>
 			<resource>
-				<filtering>false</filtering>
+				<filtering>true</filtering>
 				<directory>src/main/resources</directory>
 			</resource>
 			<resource>

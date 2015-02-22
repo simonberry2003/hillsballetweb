@@ -4,7 +4,6 @@ import javax.inject.Inject;
 
 import org.apache.wicket.Component;
 import org.apache.wicket.protocol.http.WebSession;
-import org.apache.wicket.request.mapper.parameter.PageParameters;
 
 import com.hillsballetschool.dao.ClassDao;
 import com.hillsballetschool.dao.ClassPeriodDao;
@@ -21,13 +20,6 @@ public class EditClassPeriodPage extends AbstractEditPage<ClassPeriod> {
 	@Inject private PeriodDao periodDao;
 	@Inject private ClassDao classDao;
 	
-	// TODO: Move to base class
-	public EditClassPeriodPage(PageParameters pageParameters) {
-		if (pageParameters.get("id").isNull()) {
-			sessionParams.clear(getIdSessionParamName());
-		}
-	}
-
 	@Override
 	protected String getIdSessionParamName() {
 		return ClassPeriod.CLASS_PERIOD_ID;

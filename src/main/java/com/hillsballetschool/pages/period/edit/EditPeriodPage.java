@@ -15,13 +15,6 @@ public class EditPeriodPage extends AbstractEditPage<Period> {
 
 	@Inject private PeriodDao dao;
 
-	// TODO: Move to base class
-	public EditPeriodPage(PageParameters pageParameters) {
-		if (pageParameters.get("id").isNull()) {
-			sessionParams.clear(getIdSessionParamName());
-		}
-	}
-
 	@Override
 	protected Dao<Period> getDao() {
 		return dao;

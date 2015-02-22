@@ -5,9 +5,9 @@ import java.util.List;
 import javax.inject.Inject;
 
 import org.apache.wicket.extensions.markup.html.repeater.data.table.IColumn;
-import org.apache.wicket.markup.html.link.BookmarkablePageLink;
 
 import com.hillsballetschool.domain.Account;
+import com.hillsballetschool.form.CreateButton;
 import com.hillsballetschool.pages.account.edit.EditAccountPage;
 import com.hillsballetschool.pages.menu.MenuWebPage;
 import com.hillsballetschool.provider.ColumnBuilder;
@@ -25,7 +25,7 @@ public class AccountPage extends MenuWebPage {
 	protected void onInitialize() {
 		super.onInitialize();
 		List<IColumn<Account, String>> columns = new ColumnBuilder<Account>(Account.Fields.ID, Account.Fields.VALUES, this, EditAccountPage.class).build();
-		add(new BookmarkablePageLink<Void>("createLink", EditAccountPage.class));
+		add(new CreateButton<Void>("createLink", EditAccountPage.class, sessionParams, Account.ACCOUNT_ID));
         add(new BootstrapTable<Account, String>("datatable", columns, accountProvider, Integer.MAX_VALUE));
 	}
 }
