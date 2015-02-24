@@ -27,9 +27,9 @@
 		<profile>
 			<id>prod</id>
 			<properties>
-				<db.username>adminvGXbKN8</db.username>
-				<db.password>6bhWp8ZRg7-9</db.password>
-				<db.connectionURL>jdbc:mysql://127.4.42.130:3306/admin</db.connectionURL>
+				<db.username>admin1Y444eq</db.username>
+				<db.password>VYXeJCKSUfL-</db.password>
+				<db.connectionURL>jdbc:mysql://54ec378ffcf933bc8e0000b1-hillsballet.rhcloud.com:64701/hbsadmin</db.connectionURL>
                 <liquibase.property.file>src/main/resources/prod.liquibase.properties</liquibase.property.file>
 			</properties>
 		</profile>
